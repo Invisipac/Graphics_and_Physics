@@ -42,6 +42,94 @@ int main()
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+
+	float vertices[] = {
+	 -0.5f, -0.5f, 0.0f,
+	 0.5f, -0.5f, 0.0f,
+	 0.0f, 0.5f, 0.0f
+	};
+
+	float rect_vertices[] = {
+		0.5f, 0.5f, 0.0f, // top right
+		0.5f, -0.5f, 0.0f, // bottom right
+		-0.5f, -0.5f, 0.0f, // bottom left
+		-0.5f, 0.5f, 0.0f //top left
+	};
+
+	unsigned int indices[] = {
+		0, 1, 3,
+		1, 2, 3
+	};
+
+
+	//Create a vertex buuffer object
+	unsigned int VBO;
+	glGenBuffers(1, &VBO);
+
+	//Create an element buffer object
+	unsigned int EBO;
+	glGenBuffers(1, &EBO);
+
+	//Create and compile the vertex shader
+	const char* vertexShaderSource = "#version 330 core\n"
+		"layout (location = 0) in vec3 aPos;\n"
+		"void main()\n"
+		"{\n"
+		" gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+		"}\0";
+
+	unsigned int vertexShader;
+	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+	glCompileShader(vertexShader);
+
+	//Create and compile the fragment shader
+	const char* fragmentShaderSource = "#version 330 core \n"
+	"out vec4 FragColor; \n"
+	"void main() \n"
+	"{ \n"
+	"	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f); \n"
+	"}\0";
+
+	unsigned int fragmentShader;
+	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	glCompileShader(fragmentShader);
+
+
+	//Link and create the shader program
+	unsigned int shaderProgram;
+	shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+	glLinkProgram(shaderProgram);
+
+	//Delete shaders now that the program is created
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
+
+	//Create vertex array object
+	unsigned int VAO;
+	glGenVertexArrays(1, &VAO);
+
+	//Set the VAO as the active buffer (?)
+	glBindVertexArray(VAO);
+
+	//Set the VBO as the active buffer, and assign the vertices to it
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(rect_vertices), rect_vertices, GL_STATIC_DRAW);
+
+	//Set the EBO as the active buffer, and assign the indices to it
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,
+		GL_STATIC_DRAW);
+
+	//Set the vertex attributes
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
+		(void*)0);
+	glEnableVertexAttribArray(0);
+
+
 	while (!glfwWindowShouldClose(window))
 	{
 		//input
@@ -51,6 +139,16 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		//Use the shader program
+		glUseProgram(shaderProgram);
+		//Set the VAO as the current object/buffer (?)
+		glBindVertexArray(VAO);
+
+		//Draw the rectangle
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//Unbind (?)
+		glBindVertexArray(0);
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -58,7 +156,3 @@ int main()
 	glfwTerminate();
 	return 0;
 }
-
-
-
-
