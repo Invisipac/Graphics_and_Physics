@@ -1,6 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
+#include "test_shader.h"
 #include <iostream>
 using namespace std;
 
@@ -95,23 +95,25 @@ int main()
 	"{ \n"
 	"	FragColor = vec4 (ourColor, 1.0); \n"
 	"}\0";
+	
+	Shader ourShader("./vshader.txt", "./fshader.txt");
 
-	unsigned int fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
+	//unsigned int fragmentShader;
+	//fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	//glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	//glCompileShader(fragmentShader);
 
 
-	//Link and create the shader program
-	unsigned int shaderProgram;
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
+	////Link and create the shader program
+	//unsigned int shaderProgram;
+	//shaderProgram = glCreateProgram();
+	//glAttachShader(shaderProgram, vertexShader);
+	//glAttachShader(shaderProgram, fragmentShader);
+	//glLinkProgram(shaderProgram);
 
-	//Delete shaders now that the program is created
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+	////Delete shaders now that the program is created
+	//glDeleteShader(vertexShader);
+	//glDeleteShader(fragmentShader);
 
 	//Create vertex array object
 	unsigned int VAO;
@@ -143,6 +145,7 @@ int main()
 	glEnableVertexAttribArray(1);
 
 
+
 	while (!glfwWindowShouldClose(window))
 	{
 		//input
@@ -153,16 +156,19 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//Use the shader program
-		glUseProgram(shaderProgram);
+		//glUseProgram(shaderProgram);
+		ourShader.use();
 
 		//Cycle green value using uniform attribute in fragment shader
 		float time = glfwGetTime();
 		float greenValue = (sin(time) / 2.0f) + 0.5f;
-		int vertexLocation = glGetUniformLocation(shaderProgram, "ourColor");
+		/*int vertexLocation = glGetUniformLocation(shaderProgram, "ourColor");
 
 		
 
-		glUniform4f(vertexLocation, 0.0f, greenValue, 0.0f, 1.0f);
+		glUniform4f(vertexLocation, 0.0f, greenValue, 0.0f, 1.0f);*/
+
+		ourShader.setFourFloat("ourColor", 0.0f, greenValue, 0.0f, 1.0f);
 
 		//Set the VAO as the current object/buffer (?)
 		glBindVertexArray(VAO);
