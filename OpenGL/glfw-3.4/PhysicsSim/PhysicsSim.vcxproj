@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\build\glad.c" />
+    <ClCompile Include="test_shader.cpp" />
     <ClCompile Include="window_setup.cpp" />
   </ItemGroup>
   <ItemGroup>
