@@ -2,6 +2,10 @@
 #include <GLFW/glfw3.h>
 #include "test_shader.h"
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -50,18 +54,76 @@ int main()
 		0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f // top
 	};
 
-	float rect_vertices[] = {
-		0.5f, 0.5f, 0.0f, // top right
-		0.5f, -0.5f, 0.0f, // bottom right
-		-0.5f, -0.5f, 0.0f, // bottom left
-		-0.5f, 0.5f, 0.0f //top left
+	float cube_vertices[] = {
+		//top face
+		0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, // forward right
+		-0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,//forward left
+		0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,// back right
+		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,//back left
+
+		//bottom face
+		0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, // bottom right
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+		0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom right
+		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+
+		//front face
+		0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, // top right
+		0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, // bottom right
+		-0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,// bottom left
+		-0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,//top left
+
+		//back face
+		0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// top right
+		0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom right
+		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+		-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f,//top left
+
+		//right face
+		0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, // top right
+		0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+		0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,// top right
+		0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f,// bottom right
+
+		//left face
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+		-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f,//top left
+		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+		-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f//top left
+
 	};
+
+
 
 	unsigned int indices[] = {
-		0, 1, 3,
-		1, 2, 3
+		//top
+		0, 1, 2,
+		2, 3, 1,
+
+		//bottom
+		4, 5, 6,
+		6, 7, 5,
+
+		//front
+		8, 9, 10,
+		10, 11, 8,
+
+		//back
+		12, 13, 14,
+		14, 15, 12,
+
+		//right
+		16, 17, 18,
+		18, 19, 17,
+
+		//left
+		20, 21, 22,
+		22, 23, 21
 	};
 
+	glm::mat4 trans = glm::mat4(1.0f);
+	trans = glm::rotate(trans, glm::radians(45.0f), glm::normalize(glm::vec3(1.0, 1.0, 1.0)));
+	//trans = glm::translate(trans, glm::vec3(0.25, 0, 0));
 
 	//Create a vertex buuffer object
 	unsigned int VBO;
@@ -70,51 +132,10 @@ int main()
 	//Create an element buffer object
 	unsigned int EBO;
 	glGenBuffers(1, &EBO);
-
-	//Create and compile the vertex shader
-	const char* vertexShaderSource = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-		"layout (location = 1) in vec3 aColor;\n"
-		"out vec3 ourColor;\n"
-		"void main()\n"
-		"{\n"
-		" gl_Position = vec4 (aPos, 1.0);\n"
-		" ourColor = aColor;\n"
-		"}\0";
-
-	unsigned int vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	//Create and compile the fragment shader
-	const char* fragmentShaderSource = "#version 330 core \n"
-	"out vec4 FragColor; \n"
-	"in vec3 ourColor; \n"
-	"void main() \n"
-	"{ \n"
-	"	FragColor = vec4 (ourColor, 1.0); \n"
-	"}\0";
 	
 	Shader ourShader("./vshader.txt", "./fshader.txt");
 
-	//unsigned int fragmentShader;
-	//fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	//glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	//glCompileShader(fragmentShader);
-
-
-	////Link and create the shader program
-	//unsigned int shaderProgram;
-	//shaderProgram = glCreateProgram();
-	//glAttachShader(shaderProgram, vertexShader);
-	//glAttachShader(shaderProgram, fragmentShader);
-	//glLinkProgram(shaderProgram);
-
-	////Delete shaders now that the program is created
-	//glDeleteShader(vertexShader);
-	//glDeleteShader(fragmentShader);
-
+	
 	//Create vertex array object
 	unsigned int VAO;
 	glGenVertexArrays(1, &VAO);
@@ -124,27 +145,25 @@ int main()
 
 	//Set the VBO as the active buffer, and assign the vertices to it
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(cube_vertices), cube_vertices, GL_STATIC_DRAW);
 
-	//Set the EBO as the active buffer, and assign the indices to it
-	/*glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,
-		GL_STATIC_DRAW);*/
-
-	//Set the vertex attributes
-	/*glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
-		(void*)0);
-	glEnableVertexAttribArray(0);*/
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
 		(void*)0);
+	
 	glEnableVertexAttribArray(0);
 	// color attribute
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
 		(void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
+	
+	
 
+	
 
+	glEnable(GL_DEPTH_TEST);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -153,29 +172,37 @@ int main()
 
 		//render
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		//Use the shader program
-		//glUseProgram(shaderProgram);
-		ourShader.use();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		
 
 		//Cycle green value using uniform attribute in fragment shader
 		float time = glfwGetTime();
 		float greenValue = (sin(time) / 2.0f) + 0.5f;
-		/*int vertexLocation = glGetUniformLocation(shaderProgram, "ourColor");
+
 
 		
 
-		glUniform4f(vertexLocation, 0.0f, greenValue, 0.0f, 1.0f);*/
 
-		ourShader.setFourFloat("ourColor", 0.0f, greenValue, 0.0f, 1.0f);
+		//ourShader.setFourFloat("ourColor", 0.0f, greenValue, 0.0f, 1.0f);
+		
+
 
 		//Set the VAO as the current object/buffer (?)
+		
 		glBindVertexArray(VAO);
 
 		//Draw the rectangle
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		trans = glm::rotate(trans, glm::radians(0.5f), glm::vec3(1.0, 0.0, 0.0));
+
+		ourShader.use();
+		
+		ourShader.setMat4("transform", trans);
+
+
+
+		glDrawElements(GL_TRIANGLES, 6*6, GL_UNSIGNED_INT, 0);
+		//glDrawArrays(GL_TRIANGLES, 0, 3);
 		//Unbind (?)
 		glBindVertexArray(0);
 
