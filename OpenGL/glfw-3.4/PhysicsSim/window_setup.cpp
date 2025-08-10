@@ -121,8 +121,14 @@ int main()
 		22, 23, 21
 	};
 
-	glm::mat4 trans = glm::mat4(1.0f);
-	trans = glm::rotate(trans, glm::radians(45.0f), glm::normalize(glm::vec3(1.0, 1.0, 1.0)));
+	glm::mat4 model = glm::mat4(1.0f);
+	model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+
+	glm::mat4 view = glm::mat4(1.0f);
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
+	glm::mat4 proj = glm::mat4(1.0f);
+	proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 	//trans = glm::translate(trans, glm::vec3(0.25, 0, 0));
 
 	//Create a vertex buuffer object
@@ -159,11 +165,12 @@ int main()
 		(void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 	
-	
-
-	
 
 	glEnable(GL_DEPTH_TEST);
+
+	glBindVertexArray(VAO);
+
+	
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -174,37 +181,27 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
+		//glBindVertexArray(VAO);
 
-		//Cycle green value using uniform attribute in fragment shader
-		float time = glfwGetTime();
-		float greenValue = (sin(time) / 2.0f) + 0.5f;
+		/*float time = glfwGetTime();
 
+		float z_shift = sin(0.01f * time);
 
+		std::cout << z_shift << std::endl;
+
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, z_shift));*/
 		
-
-
-		//ourShader.setFourFloat("ourColor", 0.0f, greenValue, 0.0f, 1.0f);
-		
-
-
-		//Set the VAO as the current object/buffer (?)
-		
-		glBindVertexArray(VAO);
-
-		//Draw the rectangle
-
-		trans = glm::rotate(trans, glm::radians(0.5f), glm::vec3(1.0, 0.0, 0.0));
+		model = glm::rotate(model, glm::radians(1.0f), glm::normalize(glm::vec3(1.0, 1.0, 1.0)));
 
 		ourShader.use();
-		
-		ourShader.setMat4("transform", trans);
 
-
+		ourShader.setMat4("model", model);
+		ourShader.setMat4("view", view);
+		ourShader.setMat4("projection", proj);
 
 		glDrawElements(GL_TRIANGLES, 6*6, GL_UNSIGNED_INT, 0);
-		//glDrawArrays(GL_TRIANGLES, 0, 3);
-		//Unbind (?)
-		glBindVertexArray(0);
+
+		//glBindVertexArray(0);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
