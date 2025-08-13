@@ -1,10 +1,12 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "test_shader.h"
+#include "quaternion.h"
 #include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <cmath>
 
 using namespace std;
 
@@ -122,7 +124,25 @@ int main()
 	};
 
 	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+	//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::normalize(glm::vec3(1.0f, 1.0f, 1.0f)));
+	Quaternion Q = Quaternion::Quaternion(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(0.0f));
+	//model = Q.GetRotationMatrix();
+	//model = model * model;
+	/*Quaternion new_q = Q.Multiply(Q, Q);
+	model = new_q.GetRotationMatrix();*/
+
+	for (int i = 0; i < 4; ++i) {
+		for (int j = 0; j < 4; ++j) {
+			std::cout << model[j][i] << " "; // Accessing in column-major order
+		}
+		std::cout << std::endl;
+	}
+	/*model = glm::rotate(model, glm::radians(270.0f), glm::normalize(glm::vec3(1.0f, 1.0f, 1.0f)));
+	model = glm::rotate(model, glm::radians(90.0f), glm::normalize(glm::vec3(1.0f, 1.0f, 1.0f)));*/
+	/*model = model * model * model * model * model;*/
+	//model = glm::translate(model, glm::vec3(0.0f, 0.0f, 2.0f));
+	////model = glm::inverse(model);
 
 	glm::mat4 view = glm::mat4(1.0f);
 	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
@@ -170,8 +190,15 @@ int main()
 
 	glBindVertexArray(VAO);
 
-	
+	ourShader.use();
 
+	ourShader.setMat4("model", model);
+	ourShader.setMat4("view", view);
+	ourShader.setMat4("projection", proj);
+
+	int count = 0;
+	float theta = 1.0f;
+	float total_angle = 0.0f;
 	while (!glfwWindowShouldClose(window))
 	{
 		//input
@@ -181,24 +208,49 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
-		//glBindVertexArray(VAO);
+		glBindVertexArray(VAO);
 
 		/*float time = glfwGetTime();
 
-		float z_shift = sin(0.01f * time);
+		float z_shift = 0.1*sin(0.8f*time - 0.5f);
 
 		std::cout << z_shift << std::endl;
 
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, z_shift));*/
-		
-		model = glm::rotate(model, glm::radians(1.0f), glm::normalize(glm::vec3(1.0, 1.0, 1.0)));
-
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, z_shift));*/
+		//model = glm::rotate(model, glm::radians(1.0f), glm::normalize(glm::vec3(1.0, 1.0, 1.0)));
 		ourShader.use();
+		
+		/*if (count < 10) {
+			count += 1;
+		}*/
+		//else
+		//{
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (fabs(model[i][j]) < 1e-4f)
+				{	
+					model[i][j] = 0.0f;
+				}
+			}
+		}
+
+		count = 0;
+		total_angle += theta;
+		if (fabs(total_angle - 360.0f) < 1e-5f)
+		{
+			total_angle = 0.0f;
+		}
+		Q = Quaternion::Quaternion(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(total_angle));
+		model = Q.GetRotationMatrix();
 
 		ourShader.setMat4("model", model);
-		ourShader.setMat4("view", view);
-		ourShader.setMat4("projection", proj);
+		//}
 
+
+		//glm::mat4 correct_model = glm::inverse(model);
+
+		
+		//ourShader.setMat4("view", view);
 		glDrawElements(GL_TRIANGLES, 6*6, GL_UNSIGNED_INT, 0);
 
 		//glBindVertexArray(0);
