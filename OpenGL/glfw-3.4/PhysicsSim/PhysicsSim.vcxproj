@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Libs;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;..\..\Libs_Include\Include;..\include;..\..\Libs_Include\Libs;$(IncludePath)</IncludePath>
+    <LibraryPath>..\include;..\..\Libs_Include\Libs;..\..\Libs_Include\Include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
