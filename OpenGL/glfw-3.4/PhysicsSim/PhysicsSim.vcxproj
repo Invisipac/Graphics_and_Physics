@@ -134,11 +134,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\build\glad.c" />
+    <ClCompile Include="cube.cpp" />
     <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="test_shader.cpp" />
     <ClCompile Include="window_setup.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="3dshapes.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="test_shader.h" />
   </ItemGroup>
