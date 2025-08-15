@@ -106,3 +106,9 @@ Quaternion Quaternion::Multiply(Quaternion q1, Quaternion q2) {
 
 	return Quaternion::Quaternion(glm::vec4(real, img));
 }
+
+glm::mat4 Quaternion::Rotate(glm::vec3 axis, float angle) {
+	Quaternion rotation_axis = Quaternion(axis, angle);
+	glm::mat4 rotation_matrix = rotation_axis.GetRotationMatrix();
+	return rotation_matrix;
+}

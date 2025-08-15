@@ -23,4 +23,6 @@ public:
 
 	Quaternion Multiply(Quaternion q1, Quaternion q2);
 
+	static glm::mat4 Rotate(glm::vec3 axis, float angle);
+
 };
