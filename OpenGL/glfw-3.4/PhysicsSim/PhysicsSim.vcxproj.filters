@@ -16,6 +16,9 @@
     <Filter Include="Source Files\QuaternionTest">
       <UniqueIdentifier>{d1ac6af9-c56c-483a-a10b-07bc195c686f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\3DShapes">
+      <UniqueIdentifier>{d7abcce5-3d2c-491a-9503-8baa3cd60916}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\build\glad.c">
@@ -30,6 +33,9 @@
     <ClCompile Include="quaternion.cpp">
       <Filter>Source Files\QuaternionTest</Filter>
     </ClCompile>
+    <ClCompile Include="cube.cpp">
+      <Filter>Source Files\3DShapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test_shader.h">
@@ -37,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="quaternion.h">
       <Filter>Source Files\QuaternionTest</Filter>
+    </ClInclude>
+    <ClInclude Include="3dshapes.h">
+      <Filter>Source Files\3DShapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
