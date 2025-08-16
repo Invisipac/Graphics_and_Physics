@@ -5,8 +5,13 @@
 #include <glm/glm.hpp>
 #include <vector>
 
+struct Vertex {
+	glm::vec3 position;
+	glm::vec3 colour;
+};
+
 class ThreeDShape {
-	std::vector<glm::vec3> vertices;
+	std::vector<Vertex> vertices;
 	glm::vec3 position;
 	glm::vec3 velocity;
 	glm::vec3 acceleration;
