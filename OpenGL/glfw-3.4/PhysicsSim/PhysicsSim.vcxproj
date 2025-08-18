@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3dshapes.h" />
+    <ClInclude Include="cube.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="test_shader.h" />
   </ItemGroup>

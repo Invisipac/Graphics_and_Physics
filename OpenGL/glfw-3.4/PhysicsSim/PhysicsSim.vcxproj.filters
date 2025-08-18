@@ -47,6 +47,9 @@
     <ClInclude Include="3dshapes.h">
       <Filter>Source Files\3DShapes</Filter>
     </ClInclude>
+    <ClInclude Include="cube.h">
+      <Filter>Source Files\3DShapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vshader.txt" />

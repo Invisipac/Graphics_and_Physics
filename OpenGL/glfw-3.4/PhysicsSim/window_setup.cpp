@@ -7,6 +7,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <cmath>
+#include "cube.h"
+#include "3dshapes.h"
 
 using namespace std;
 
@@ -49,149 +51,161 @@ int main()
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 
-	float vertices[] = {
-		// positions // colors
-		0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom right
-		-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom left
-		0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f // top
-	};
+	//float vertices[] = {
+	//	// positions // colors
+	//	0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom right
+	//	-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom left
+	//	0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f // top
+	//};
 
-	float cube_vertices[] = {
-		//top face
-		0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, // forward right
-		-0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,//forward left
-		0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,// back right
-		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,//back left
+	//float cube_vertices[] = {
+	//	//top face
+	//	0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, // forward right
+	//	-0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,//forward left
+	//	0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,// back right
+	//	-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,//back left
 
-		//bottom face
-		0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, // bottom right
-		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,// bottom left
-		0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom right
-		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+	//	//bottom face
+	//	0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, // bottom right
+	//	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+	//	0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom right
+	//	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
 
-		//front face
-		0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, // top right
-		0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, // bottom right
-		-0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,// bottom left
-		-0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,//top left
+	//	//front face
+	//	0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, // top right
+	//	0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, // bottom right
+	//	-0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,// bottom left
+	//	-0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,//top left
 
-		//back face
-		0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// top right
-		0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom right
-		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
-		-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f,//top left
+	//	//back face
+	//	0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// top right
+	//	0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom right
+	//	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+	//	-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f,//top left
 
-		//right face
-		0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, // top right
-		0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
-		0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,// top right
-		0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f,// bottom right
+	//	//right face
+	//	0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, // top right
+	//	0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+	//	0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,// top right
+	//	0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f,// bottom right
 
-		//left face
-		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,// bottom left
-		-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f,//top left
-		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
-		-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f//top left
+	//	//left face
+	//	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+	//	-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f,//top left
+	//	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
+	//	-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f//top left
 
-	};
-
-
-
-	unsigned int indices[] = {
-		//top
-		0, 1, 2,
-		2, 3, 1,
-
-		//bottom
-		4, 5, 6,
-		6, 7, 5,
-
-		//front
-		8, 9, 10,
-		10, 11, 8,
-
-		//back
-		12, 13, 14,
-		14, 15, 12,
-
-		//right
-		16, 17, 18,
-		18, 19, 17,
-
-		//left
-		20, 21, 22,
-		22, 23, 21
-	};
-
-	glm::mat4 model = glm::mat4(1.0f);
-	//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
-	//model = glm::rotate(model, glm::radians(180.0f), glm::normalize(glm::vec3(1.0f, 1.0f, 1.0f)));
-	Quaternion Q = Quaternion::Quaternion(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(0.0f));
+	//};
 
 
-	glm::mat4 view = glm::mat4(1.0f);
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
-	glm::mat4 proj = glm::mat4(1.0f);
-	proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
-	//trans = glm::translate(trans, glm::vec3(0.25, 0, 0));
+	//unsigned int indices[] = {
+	//	//top
+	//	0, 1, 2,
+	//	2, 3, 1,
 
-	//Create a vertex buuffer object
-	unsigned int VBO;
-	glGenBuffers(1, &VBO);
+	//	//bottom
+	//	4, 5, 6,
+	//	6, 7, 5,
 
-	//Create an element buffer object
-	unsigned int EBO;
-	glGenBuffers(1, &EBO);
-	
+	//	//front
+	//	8, 9, 10,
+	//	10, 11, 8,
+
+	//	//back
+	//	12, 13, 14,
+	//	14, 15, 12,
+
+	//	//right
+	//	16, 17, 18,
+	//	18, 19, 17,
+
+	//	//left
+	//	20, 21, 22,
+	//	22, 23, 21
+	//};
+
+	//glm::mat4 model = glm::mat4(1.0f);
+	////model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+	////model = glm::rotate(model, glm::radians(180.0f), glm::normalize(glm::vec3(1.0f, 1.0f, 1.0f)));
+	//Quaternion Q = Quaternion::Quaternion(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(0.0f));
+
+
+	//glm::mat4 view = glm::mat4(1.0f);
+	//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
+	//glm::mat4 proj = glm::mat4(1.0f);
+	//proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+	////trans = glm::translate(trans, glm::vec3(0.25, 0, 0));
+
+	////Create a vertex buuffer object
+	//unsigned int VBO;
+	//glGenBuffers(1, &VBO);
+
+	////Create an element buffer object
+	//unsigned int EBO;
+	//glGenBuffers(1, &EBO);
+	//
 	Shader ourShader("./vshader.txt", "./fshader.txt");
 
-	
-	//Create vertex array object
-	unsigned int VAO;
-	glGenVertexArrays(1, &VAO);
+	//
+	////Create vertex array object
+	//unsigned int VAO;
+	//glGenVertexArrays(1, &VAO);
 
-	//Set the VAO as the active buffer (?)
-	glBindVertexArray(VAO);
+	////Set the VAO as the active buffer (?)
+	//glBindVertexArray(VAO);
 
-	//Set the VBO as the active buffer, and assign the vertices to it
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(cube_vertices), cube_vertices, GL_STATIC_DRAW);
+	////Set the VBO as the active buffer, and assign the vertices to it
+	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(cube_vertices), cube_vertices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
-		(void*)0);
-	
-	glEnableVertexAttribArray(0);
-	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
-		(void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
-	
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+	//	(void*)0);
+	//
+	//glEnableVertexAttribArray(0);
+	//// color attribute
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+	//	(void*)(3 * sizeof(float)));
+	//glEnableVertexAttribArray(1);
+	//
 
 	glEnable(GL_DEPTH_TEST);
 
-	glBindVertexArray(VAO);
+	//glBindVertexArray(VAO);
 
 
-	ourShader.use();
+	//ourShader.use();
 
-	ourShader.setMat4("model", model);
-	ourShader.setMat4("view", view);
-	ourShader.setMat4("projection", proj);
+	//ourShader.setMat4("model", model);
+	//ourShader.setMat4("view", view);
+	//ourShader.setMat4("projection", proj);
 
-	int count = 0;
-	float theta = 1.0f;
-	float total_angle = 0.0f;
+	//int count = 0;
+	//float theta = 1.0f;
+	//float total_angle = 0.0f;
 
-	for (int i = 0; i < (6 * 4 * 6); i += 6)
-	{
-		cube_vertices[i] += 0.5f;
-	}
+	///*for (int i = 0; i < (6 * 4 * 6); i += 6)
+	//{
+	//	cube_vertices[i] += 0.5f;
+	//}
 
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(cube_vertices), &cube_vertices);
+	//glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(cube_vertices), &cube_vertices);*/
+
+	GLuint vboNum;
+	GLuint eboNum;
+	GLuint vaoNum;
+
+	Cube TestCube;
+	TestCube.s = 0.5f;
+	TestCube.SetCubeVertices();
+	TestCube.GenIndices();
+	TestCube.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);
+	//TestCube.CreateCubeBuffer(&vboNum);
+	//TestCube.CreateIndexBuffer(&eboNum);
 
 
 	while (!glfwWindowShouldClose(window))
@@ -203,7 +217,7 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
-		glBindVertexArray(VAO);
+		//glBindVertexArray(VAO);
 
 		/*ourShader.use();
 
@@ -217,8 +231,10 @@ int main()
 
 		//ourShader.setMat4("model", model);
 
-		glDrawElements(GL_TRIANGLES, 6*6, GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, 6*6, GL_UNSIGNED_INT, 0);
 		//glBindVertexArray(0);
+		ourShader.use();
+		TestCube.DrawCube(vaoNum);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
