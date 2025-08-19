@@ -3,13 +3,15 @@ layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aColor;
 
 out vec3 ourColor;
+out float testNum;
 
-//uniform mat4 model;
+uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 uniform vec3 displacement;
 void main()
 {
-	gl_Position = projection * view * vec4 (aPos + displacement, 1);
+	testNum = aPos.z;
+	gl_Position = projection * view * model * vec4 (aPos + displacement, 1);
 	ourColor = aColor;
 };

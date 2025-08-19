@@ -128,8 +128,8 @@ int main()
 	glm::mat4 model = glm::mat4(1.0f);
 	////model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 	////model = glm::rotate(model, glm::radians(180.0f), glm::normalize(glm::vec3(1.0f, 1.0f, 1.0f)));
-	Quaternion Q = Quaternion::Quaternion(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(1.0f));
-	//model = Q.GetRotationMatrix();
+	Quaternion Q = Quaternion::Quaternion(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(45.0f));
+	model = Q.GetRotationMatrix();
 
 	glm::mat4 view = glm::mat4(1.0f);
 	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -5.0f));
@@ -149,7 +149,7 @@ int main()
 
 	ourShader.use();
 
-	//ourShader.setMat4("model", model);
+	ourShader.setMat4("model", model);
 	ourShader.setMat4("view", view);
 	ourShader.setMat4("projection", proj);
 
@@ -164,8 +164,8 @@ int main()
 	Cube TestCube;
 	TestCube.s = 0.5f;
 	TestCube.shapePosition = glm::vec3(0, 0, 0);
-	TestCube.velocity = glm::vec3(0.09f, 0, 0.03);
-	TestCube.acceleration = glm::vec3(0, -0.00981, 0);
+	TestCube.velocity = glm::vec3(0.0f, 0, 0.0);
+	TestCube.acceleration = glm::vec3(0, 0, 0);
 	TestCube.SetCubeVertices();
 	TestCube.GenIndices();
 	TestCube.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);
