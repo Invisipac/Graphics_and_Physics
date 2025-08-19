@@ -164,7 +164,7 @@ int main()
 	Cube TestCube;
 	TestCube.s = 0.5f;
 	TestCube.shapePosition = glm::vec3(0, 0, 0);
-	TestCube.velocity = glm::vec3(0.09f, 0, 0);
+	TestCube.velocity = glm::vec3(0.09f, 0, 0.03);
 	TestCube.acceleration = glm::vec3(0, -0.00981, 0);
 	TestCube.SetCubeVertices();
 	TestCube.GenIndices();

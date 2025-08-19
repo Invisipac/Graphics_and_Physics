@@ -25,11 +25,16 @@ void ThreeDShape::CheckCollision()
 {
 	if (this->shapePosition.x + 0.5 > 2 or this->shapePosition.x - 0.5 < -2)
 	{
-		this->velocity = -this->velocity;
+		this->velocity.x = -this->velocity.x;
 	}
 
 	if (this->shapePosition.y + 0.5 > 2 or this->shapePosition.y - 0.5 < -2)
 	{
-		this->velocity = -this->velocity;
+		this->velocity.y = -this->velocity.y;
+	}
+
+	if (this->shapePosition.z + 0.5 > 2 or this->shapePosition.z - 0.5 < -2)
+	{
+		this->velocity.z = -this->velocity.z;
 	}
 }
