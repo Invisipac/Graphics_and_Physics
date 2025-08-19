@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\build\glad.c" />
+    <ClCompile Include="3dshapes.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="test_shader.cpp" />

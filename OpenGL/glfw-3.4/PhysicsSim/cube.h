@@ -6,7 +6,7 @@
 #include <vector>
 
 
-class Cube : ThreeDShape {
+class Cube : public ThreeDShape {
 public:
 	float s;
 	std::vector<int> cubeIndices;

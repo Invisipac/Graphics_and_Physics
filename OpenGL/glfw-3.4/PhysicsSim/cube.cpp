@@ -19,26 +19,26 @@ void Cube::SetCubeVertices() {
 		//Right
 		Vertex{glm::vec3(s, s, s), glm::vec3(0, 1, 0)}, //front top right
 		Vertex{glm::vec3(s, -s, s), glm::vec3(0, 1, 0)}, //front bottom right
-		Vertex{glm::vec3(s, -s, -s) , glm::vec3(0, 1, 0)}, //back top right
+		Vertex{glm::vec3(s, s, -s) , glm::vec3(0, 1, 0)}, //back top right
 		Vertex{glm::vec3(s, -s, -s), glm::vec3(0, 1, 0)}, //back bottom right
 		//Left
 		Vertex{ glm::vec3(-s, s, s), glm::vec3(0, 0, 0) }, //front top left
 		Vertex{ glm::vec3(-s, -s, s), glm::vec3(0, 0, 0)}, //front bottom left
-		Vertex{glm::vec3(-s, -s, -s), glm::vec3(0, 0, 0)}, //back top left
+		Vertex{glm::vec3(-s, s, -s), glm::vec3(0, 0, 0)}, //back top left
 		Vertex{ glm::vec3(-s, -s, -s), glm::vec3(0, 0, 0) },//back bottom left
 		//Top
 		Vertex{ glm::vec3(-s, s, s), glm::vec3(0, 0, 1) }, //front top left
 		Vertex{ glm::vec3(s, s, s), glm::vec3(0, 0, 1) }, //front top right
-		Vertex{ glm::vec3(-s, -s, s), glm::vec3(0, 0, 1) }, //back top left
-		Vertex{ glm::vec3(s, -s, s) , glm::vec3(0, 0, 1) }, //back top right
+		Vertex{ glm::vec3(-s, s, -s), glm::vec3(0, 0, 1) }, //back top left
+		Vertex{ glm::vec3(s, s, -s) , glm::vec3(0, 0, 1) }, //back top right
 		//Bottom
 		Vertex{ glm::vec3(-s, -s, s), glm::vec3(0, 0, 0)}, //front bottom left
 		Vertex{glm::vec3(s, -s, s), glm::vec3(0, 0, 0)}, //front bottom right
 		Vertex{ glm::vec3(-s, -s, -s), glm::vec3(0, 0, 0) },//back bottom left
 		Vertex{ glm::vec3(s, -s, -s), glm::vec3(0, 0, 0) }, //back bottom right
 		//Back
-		Vertex{glm::vec3(-s, -s, -s), glm::vec3(0, 0, 0)}, //back top left
-		Vertex{glm::vec3(s, -s, -s) , glm::vec3(0, 0, 0)}, //back top right
+		Vertex{glm::vec3(-s, s, -s), glm::vec3(0, 0, 0)}, //back top left
+		Vertex{glm::vec3(s, s, -s) , glm::vec3(0, 0, 0)}, //back top right
 		Vertex{glm::vec3(-s, -s, -s), glm::vec3(0, 0, 0)},//back bottom left
 		Vertex{glm::vec3(s, -s, -s), glm::vec3(0, 0, 0)} //back bottom right	
 		}; 

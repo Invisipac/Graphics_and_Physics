@@ -36,6 +36,9 @@
     <ClCompile Include="cube.cpp">
       <Filter>Source Files\3DShapes</Filter>
     </ClCompile>
+    <ClCompile Include="3dshapes.cpp">
+      <Filter>Source Files\3DShapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test_shader.h">

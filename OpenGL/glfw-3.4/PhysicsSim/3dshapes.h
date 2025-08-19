@@ -20,6 +20,11 @@ public:
 
 	void UpdateVertexBuffer();
 
+	void MoveShape(int updateRate, int &currentFrame);
+
+	void CheckCollision();
+
 	void DrawShape();
 
+	void Transform(glm::mat4 transformation);
 };
