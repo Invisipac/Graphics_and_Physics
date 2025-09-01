@@ -17,6 +17,7 @@ void ThreeDShape::MoveShape(int updateRate, int &currentFrame)
 	{*/
 	this->shapePosition += this->velocity;
 	this->velocity += this->acceleration;	
+	std::cout << this->shapePosition.x << std::endl;
 	/*currentFrame = 0;*/
 	//}
 }
@@ -25,6 +26,7 @@ void ThreeDShape::CheckCollision()
 {
 	if (this->shapePosition.x + 0.5 > 2 or this->shapePosition.x - 0.5 < -2)
 	{
+		//std::cout << "a" << std::endl;
 		this->velocity.x = -this->velocity.x;
 	}
 

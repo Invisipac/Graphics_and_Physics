@@ -153,7 +153,7 @@ int main()
 	ourShader.setMat4("view", view);
 	ourShader.setMat4("projection", proj);
 
-	float theta = 0.1f;
+	float theta = 0.7f;
 	float total_angle = 0.0f;
 
 
@@ -164,8 +164,8 @@ int main()
 	Cube TestCube;
 	TestCube.s = 0.5f;
 	TestCube.shapePosition = glm::vec3(0, 0, 0);
-	TestCube.velocity = glm::vec3(0.0f, 0, 0.0);
-	TestCube.acceleration = glm::vec3(0, 0, 0);
+	TestCube.velocity = glm::vec3(0.05f, 0, 0.0);
+	TestCube.acceleration = glm::vec3(0, 0.0f, 0);
 	TestCube.SetCubeVertices();
 	TestCube.GenIndices();
 	TestCube.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);
@@ -188,14 +188,14 @@ int main()
 		ourShader.use();
 
 
-		/*total_angle += theta;
+		total_angle += theta;
 		if (fabs(total_angle - 360.0f) < 1e-5f)
 		{
 			total_angle = 0.0f;
-		}*/
-		//model = Quaternion::Rotate(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(total_angle));
+		}
+		model = Quaternion::Rotate(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(total_angle));
 
-		//ourShader.setMat4("model", model);
+		
 	
 		//TestCube.Transform(model);
 
@@ -210,6 +210,7 @@ int main()
 			
 			time = glfwGetTime();
 		}
+		ourShader.setMat4("model", model);
 		TestCube.CheckCollision();
 		TestCube.DrawCube(vaoNum);
 		glfwSwapBuffers(window);

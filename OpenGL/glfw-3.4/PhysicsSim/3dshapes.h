@@ -8,6 +8,7 @@
 typedef struct _Vertex {
 	glm::vec3 position;
 	glm::vec3 colour;
+	glm::vec3 normal;
 } Vertex;
 
 class ThreeDShape {

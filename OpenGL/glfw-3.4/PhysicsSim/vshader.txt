@@ -1,17 +1,25 @@
 #version 460 core
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aColor;
+layout (location = 2) in vec3 aNormal;
+
+vec4 lightPos = vec4(5.0f, 0.0f, 0.0f, 1.0f);
 
 out vec3 ourColor;
-out float testNum;
+out vec4 lightNorm;
+out vec4 lightDir;
 
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 uniform vec3 displacement;
+
 void main()
 {
-	testNum = aPos.z;
-	gl_Position = projection * view * model * vec4 (aPos + displacement, 1);
+
+	vec4 curPos = model * vec4(aPos, 1) + vec4(displacement, 1);
+	lightNorm = normalize(model * vec4(aNormal, 1.0f));
+	lightDir = normalize(curPos - lightPos);
+	gl_Position = projection * view * curPos;
 	ourColor = aColor;
 };

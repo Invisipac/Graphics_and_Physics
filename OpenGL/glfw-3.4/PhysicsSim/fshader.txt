@@ -1,8 +1,15 @@
 #version 460 core
+
 in vec3 ourColor;
-in float testNum;
+in vec4 lightNorm;
+in vec4 lightDir;
+
 out vec4 FragColor;
+
+float ambient = 0.5f;
+
 void main()
 {
-	FragColor = vec4 (testNum * ourColor, 1.0);
+	float diffuseVal = max(dot(lightDir, lightNorm), 0.0f);
+	FragColor = vec4 (ourColor * (diffuseVal + ambient), 1.0);
 }
