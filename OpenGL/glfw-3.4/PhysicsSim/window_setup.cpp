@@ -165,7 +165,7 @@ int main()
 	TestCube.s = 0.5f;
 	TestCube.shapePosition = glm::vec3(0, 0, 0);
 	TestCube.velocity = glm::vec3(0.05f, 0, 0.0);
-	TestCube.acceleration = glm::vec3(0, 0.0f, 0);
+	TestCube.acceleration = glm::vec3(0, -0.00981f, 0);
 	TestCube.SetCubeVertices();
 	TestCube.GenIndices();
 	TestCube.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);
