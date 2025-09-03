@@ -9,6 +9,7 @@
 #include <cmath>
 #include "cube.h"
 #include "3dshapes.h"
+#include "camera.h"
 
 using namespace std;
 
@@ -50,81 +51,6 @@ int main()
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-
-	//float vertices[] = {
-	//	// positions // colors
-	//	0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom right
-	//	-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom left
-	//	0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f // top
-	//};
-
-	//float cube_vertices[] = {
-	//	//top face
-	//	0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, // forward right
-	//	-0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,//forward left
-	//	0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,// back right
-	//	-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,//back left
-
-	//	//bottom face
-	//	0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, // bottom right
-	//	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,// bottom left
-	//	0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom right
-	//	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
-
-	//	//front face
-	//	0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, // top right
-	//	0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, // bottom right
-	//	-0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,// bottom left
-	//	-0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,//top left
-
-	//	//back face
-	//	0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// top right
-	//	0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom right
-	//	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
-	//	-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f,//top left
-
-	//	//right face
-	//	0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, // top right
-	//	0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
-	//	0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,// top right
-	//	0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f,// bottom right
-
-	//	//left face
-	//	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f,// bottom left
-	//	-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f,//top left
-	//	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,// bottom left
-	//	-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f//top left
-
-	//};
-
-
-
-	//unsigned int indices[] = {
-	//	//top
-	//	0, 1, 2,
-	//	2, 3, 1,
-
-	//	//bottom
-	//	4, 5, 6,
-	//	6, 7, 5,
-
-	//	//front
-	//	8, 9, 10,
-	//	10, 11, 8,
-
-	//	//back
-	//	12, 13, 14,
-	//	14, 15, 12,
-
-	//	//right
-	//	16, 17, 18,
-	//	18, 19, 17,
-
-	//	//left
-	//	20, 21, 22,
-	//	22, 23, 21
-	//};
-
 	glm::mat4 model = glm::mat4(1.0f);
 	////model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 	////model = glm::rotate(model, glm::radians(180.0f), glm::normalize(glm::vec3(1.0f, 1.0f, 1.0f)));
@@ -146,6 +72,8 @@ int main()
 
 
 	int frame = 0;
+
+	Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
 
 	ourShader.use();
 
@@ -174,6 +102,8 @@ int main()
 
 	float time = 0;
 
+	glm::mat4 identity = glm::mat4(1.0f);
+
 	while (!glfwWindowShouldClose(window))
 	{
 		//input
@@ -194,8 +124,6 @@ int main()
 			total_angle = 0.0f;
 		}
 		model = Quaternion::Rotate(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(total_angle));
-
-		
 	
 		//TestCube.Transform(model);
 
@@ -207,12 +135,22 @@ int main()
 			TestCube.MoveShape(10, frame);
 			ourShader.setVec3("displacement", TestCube.shapePosition);
 
-			
 			time = glfwGetTime();
 		}
-		ourShader.setMat4("model", model);
+
+		/*camera.AutoMoveCamera();
+		view = camera.GetCameraMatrix(glm::vec3(0, 0, 0));*/
+
+		//ourShader.setMat4("model", model);
+		//ourShader.setMat4("view", view);
 		TestCube.CheckCollision();
-		TestCube.DrawCube(vaoNum);
+		for (int i = 0; i < 1; i++)
+		{
+			model = glm::translate(model, glm::vec3(i+0.2f, 0, 0));
+			ourShader.setMat4("model", model);
+			TestCube.DrawCube(vaoNum);
+		}
+		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

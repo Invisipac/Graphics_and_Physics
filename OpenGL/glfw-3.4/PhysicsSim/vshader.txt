@@ -3,7 +3,7 @@ layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aColor;
 layout (location = 2) in vec3 aNormal;
 
-vec4 lightPos = vec4(5.0f, 0.0f, 0.0f, 1.0f);
+vec4 lightPos = vec4(0.0f, 0.0f, 5.0f, 1.0f);
 
 out vec3 ourColor;
 out vec4 lightNorm;
@@ -19,7 +19,7 @@ void main()
 
 	vec4 curPos = model * vec4(aPos, 1) + vec4(displacement, 1);
 	lightNorm = normalize(model * vec4(aNormal, 1.0f));
-	lightDir = normalize(curPos - lightPos);
+	lightDir = normalize(-curPos + lightPos);
 	gl_Position = projection * view * curPos;
 	ourColor = aColor;
 };

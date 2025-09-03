@@ -22,31 +22,36 @@ void ThreeDShape::MoveShape(int updateRate, int &currentFrame)
 	//}
 }
 
+void ThreeDShape::Collide(float energyLoss)
+{
+	this->velocity = -energyLoss * this->velocity;
+}
+
 void ThreeDShape::CheckCollision()
 {
 	if (this->shapePosition.x + 0.5 > 2)
 	{
 		//std::cout << "a" << std::endl;
-		this->velocity.x = -this->velocity.x;
+		this->Collide(0.95);
 		this->shapePosition.x = 1.5;
 	}
 
 	if (this->shapePosition.x - 0.5 < -2)
 	{
-		this->velocity.x = -this->velocity.x;
+		this->Collide(0.95);
 		this->shapePosition.x = -1.5;
 	}
 
 	if (this->shapePosition.y + 0.5 > 2)
 	{
 		//std::cout << "a" << std::endl;
-		this->velocity.y = -this->velocity.y;
+		this->Collide(0.95);
 		this->shapePosition.y = 1.5;
 	}
 
 	if (this->shapePosition.y - 0.5 < -2)
 	{
-		this->velocity.y = -this->velocity.y;
+		this->Collide(0.95);
 		this->shapePosition.y = -1.5;
 	}
 
@@ -54,13 +59,13 @@ void ThreeDShape::CheckCollision()
 	if (this->shapePosition.z + 0.5 > 2)
 	{
 		//std::cout << "a" << std::endl;
-		this->velocity.z = -this->velocity.z;
+		this->Collide(0.95);
 		this->shapePosition.z = 1.5;
 	}
 
 	if (this->shapePosition.z - 0.5 < -2)
 	{
-		this->velocity.z = -this->velocity.z;
+		this->Collide(0.95);
 		this->shapePosition.z = -1.5;
 	}
 }

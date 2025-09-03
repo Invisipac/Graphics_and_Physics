@@ -25,6 +25,8 @@ public:
 
 	void CheckCollision();
 
+	void Collide(float energyLoss);
+
 	void DrawShape();
 
 	void Transform(glm::mat4 transformation);
