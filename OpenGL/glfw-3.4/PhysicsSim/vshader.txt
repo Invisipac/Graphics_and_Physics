@@ -19,7 +19,7 @@ void main()
 
 	vec4 curPos = model * vec4(aPos, 1) + vec4(displacement, 1);
 	lightNorm = normalize(model * vec4(aNormal, 1.0f));
-	lightDir = normalize(curPos - lightPos);
+	lightDir = normalize(-curPos + lightPos);
 	gl_Position = projection * view * curPos;
 	ourColor = aColor;
 };

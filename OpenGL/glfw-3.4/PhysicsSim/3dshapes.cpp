@@ -17,7 +17,7 @@ void ThreeDShape::MoveShape(int updateRate, int &currentFrame)
 	{*/
 	this->shapePosition += this->velocity;
 	this->velocity += this->acceleration;	
-	std::cout << this->shapePosition.x << std::endl;
+	//std::cout << this->shapePosition.x << std::endl;
 	/*currentFrame = 0;*/
 	//}
 }
