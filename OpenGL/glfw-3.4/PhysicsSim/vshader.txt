@@ -3,7 +3,7 @@ layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aColor;
 layout (location = 2) in vec3 aNormal;
 
-vec4 lightPos = vec4(5.0f, 0.0f, 0.0f, 1.0f);
+vec4 lightPos = vec4(0.0f, 0.0f, 5.0f, 1.0f);
 
 out vec3 ourColor;
 out vec4 lightNorm;

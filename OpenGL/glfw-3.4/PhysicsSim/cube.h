@@ -9,7 +9,7 @@
 class Cube : public ThreeDShape {
 public:
 	float s;
-	std::vector<int> cubeIndices;
+	//std::vector<int> cubeIndices;
 
 	void SetCubeVertices();
 

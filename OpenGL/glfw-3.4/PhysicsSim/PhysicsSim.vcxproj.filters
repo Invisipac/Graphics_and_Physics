@@ -19,6 +19,9 @@
     <Filter Include="Source Files\3DShapes">
       <UniqueIdentifier>{d7abcce5-3d2c-491a-9503-8baa3cd60916}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Camera">
+      <UniqueIdentifier>{8bd094f4-9565-4e8b-ae55-d95f13b5fbcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\build\glad.c">
@@ -39,6 +42,12 @@
     <ClCompile Include="3dshapes.cpp">
       <Filter>Source Files\3DShapes</Filter>
     </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere.cpp">
+      <Filter>Source Files\3DShapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test_shader.h">
@@ -51,6 +60,12 @@
       <Filter>Source Files\3DShapes</Filter>
     </ClInclude>
     <ClInclude Include="cube.h">
+      <Filter>Source Files\3DShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Source Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere.h">
       <Filter>Source Files\3DShapes</Filter>
     </ClInclude>
   </ItemGroup>
