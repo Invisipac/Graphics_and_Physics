@@ -18,6 +18,11 @@ public:
 	glm::vec3 shapePosition;
 	glm::vec3 velocity;
 	glm::vec3 acceleration;
+
+	glm::vec3 RED = glm::vec3(1, 0, 0);
+	glm::vec3 BLUE = glm::vec3(0, 0, 1);
+	glm::vec3 GREEN = glm::vec3(0, 1, 0);
+
 	float mass;
 
 	void UpdateVertexBuffer();
