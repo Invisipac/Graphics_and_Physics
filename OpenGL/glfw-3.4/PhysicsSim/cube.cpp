@@ -48,13 +48,13 @@ void Cube::SetCubeVertices() {
 	{
 		for (int i = 0; i <= this->vertices.size() - 4; i += 4)
 		{
-			this->cubeIndices.push_back(i);
-			this->cubeIndices.push_back(i + 1);
-			this->cubeIndices.push_back(i + 2);
+			this->indices.push_back(i);
+			this->indices.push_back(i + 1);
+			this->indices.push_back(i + 2);
 
-			this->cubeIndices.push_back(i + 1);
-			this->cubeIndices.push_back(i + 2);
-			this->cubeIndices.push_back(i + 3);
+			this->indices.push_back(i + 1);
+			this->indices.push_back(i + 2);
+			this->indices.push_back(i + 3);
 		}
 	}
 
@@ -70,7 +70,7 @@ void Cube::SetCubeVertices() {
 
 		glGenBuffers(1, eboNum);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *eboNum);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, this->cubeIndices.size() * sizeof(int), &this->cubeIndices[0], GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, this->indices.size() * sizeof(int), &this->indices[0], GL_STATIC_DRAW);
 	}
 	
 	void Cube::CreateAllBuffers(unsigned int* vboNum, unsigned int* eboNum, unsigned int* vaoNum)
@@ -96,5 +96,5 @@ void Cube::SetCubeVertices() {
 	{
 		glBindVertexArray(vaoNum);
 
-		glDrawElements(GL_TRIANGLES, this->cubeIndices.size(), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, this->indices.size(), GL_UNSIGNED_INT, 0);
 	}
