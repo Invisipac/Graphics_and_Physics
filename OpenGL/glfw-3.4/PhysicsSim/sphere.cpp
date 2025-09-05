@@ -12,9 +12,12 @@ void Sphere::GenSphereVertices(float r)
 	float theta = glm::radians(M_PI / this->stacks);
 	float phi = glm::radians((2 * M_PI) / this->sectors);
 
-	for (int i = 0; i < this->stacks; i++)
+	Vertex topVertex = Vertex{glm::vec3(0, r, 0), this->RED, glm::vec3(0, 1, 0) };
+	Vertex bottomVertex = Vertex{ glm::vec3(0, -r, 0), this->RED, glm::vec3(0, 1, 0) };
+
+	for (int i = 1; i < this->stacks; i++)
 	{
-		for (int j = 0; j < this->sectors; j++)
+		for (int j = 1; j < this->sectors; j++)
 		{
 			float y = r * sin(i * theta);
 			float x = r * cos(i * theta) * cos(j * phi);
@@ -31,6 +34,9 @@ void Sphere::GenSphereVertices(float r)
 			this->vertices.push_back(vert);
 		}
 	}
+
+	this->vertices.push_back(topVertex);
+	this->vertices.push_back(bottomVertex);
 
 }
 
