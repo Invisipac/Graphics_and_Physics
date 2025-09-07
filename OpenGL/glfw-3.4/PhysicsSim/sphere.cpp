@@ -15,9 +15,11 @@ void Sphere::GenSphereVertices(float r)
 	Vertex topVertex = Vertex{glm::vec3(0, r, 0), this->RED, glm::vec3(0, 1, 0) };
 	Vertex bottomVertex = Vertex{ glm::vec3(0, -r, 0), this->RED, glm::vec3(0, 1, 0) };
 
+	this->vertices.push_back(topVertex);
+
 	for (int i = 1; i < this->stacks; i++)
 	{
-		for (int j = 1; j < this->sectors; j++)
+		for (int j = 0; j < this->sectors; j++)
 		{
 			float y = r * sin(i * theta);
 			float x = r * cos(i * theta) * cos(j * phi);
@@ -35,12 +37,26 @@ void Sphere::GenSphereVertices(float r)
 		}
 	}
 
-	this->vertices.push_back(topVertex);
 	this->vertices.push_back(bottomVertex);
 
 }
 
 void Sphere::GenSphereIndices()
 {
+	//top surface
+	for (int i = 0; i < this->sectors - 1; i++)
+	{
+		this->indices.push_back(0);
+		this->indices.push_back(i + 1);
+		this->indices.push_back(i + 2);
+	}
 
+	//middle of sphere
+	for (int i = 1; i < this->stacks; i++)
+	{
+		for (int j = 0; j < this->sectors; j++)
+		{
+
+		}
+	}
 }
