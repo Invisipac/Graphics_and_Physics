@@ -10,6 +10,7 @@
 #include "cube.h"
 #include "3dshapes.h"
 #include "camera.h"
+#include "sphere.h"
 
 using namespace std;
 
@@ -89,14 +90,22 @@ int main()
 	GLuint eboNum;
 	GLuint vaoNum;
 
-	Cube TestCube;
+	/*Cube TestCube;
 	TestCube.s = 0.5f;
 	TestCube.shapePosition = glm::vec3(0, 0, 0);
 	TestCube.velocity = glm::vec3(0.05f, 0.05f, 0.05f);
 	TestCube.acceleration = glm::vec3(0, -0.00981f, 0);
 	TestCube.SetCubeVertices();
 	TestCube.GenIndices();
-	TestCube.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);
+	TestCube.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);*/
+
+	Sphere TestSphere(20, 20);
+	TestSphere.GenSphereVertices(1);
+	TestSphere.GenSphereIndices();
+	TestSphere.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);
+	TestSphere.shapePosition = glm::vec3(0, 0, 0);
+	TestSphere.velocity = glm::vec3(0.1f, 0.05f, 0.05f);
+	TestSphere.acceleration = glm::vec3(0, -0.00981f, 0);
 	//TestCube.CreateCubeBuffer(&vboNum);
 	//TestCube.CreateIndexBuffer(&eboNum);
 
@@ -123,33 +132,35 @@ int main()
 		{
 			total_angle = 0.0f;
 		}
-		model = Quaternion::Rotate(glm::vec3(1.0f, 1.0f, 1.0f), glm::radians(total_angle));
+		model = Quaternion::Rotate(glm::vec3(1.0f, 0.0f, 0.0f), glm::radians(total_angle));
 	
-		//TestCube.Transform(model);
+		////TestCube.Transform(model);
 
-		//glDrawElements(GL_TRIANGLES, 6*6, GL_UNSIGNED_INT, 0);
-		//glBindVertexArray(0);
-		
+		////glDrawElements(GL_TRIANGLES, 6*6, GL_UNSIGNED_INT, 0);
+		////glBindVertexArray(0);
+		//
 		if (glfwGetTime() - time >= 1.0f / 80.0f)
 		{
-			TestCube.MoveShape(10, frame);
-			ourShader.setVec3("displacement", TestCube.shapePosition);
+			TestSphere.MoveShape(10, frame);
+			ourShader.setVec3("displacement", TestSphere.shapePosition);
 
 			time = glfwGetTime();
 		}
 
-		/*camera.AutoMoveCamera();
-		view = camera.GetCameraMatrix(glm::vec3(0, 0, 0));*/
+		///*camera.AutoMoveCamera();
+		//view = camera.GetCameraMatrix(glm::vec3(0, 0, 0));*/
 
-		//ourShader.setMat4("model", model);
-		//ourShader.setMat4("view", view);
-		TestCube.CheckCollision();
-		for (int i = 0; i < 1; i++)
-		{
-			model = glm::translate(model, glm::vec3(i+0.2f, 0, 0));
-			ourShader.setMat4("model", model);
-			TestCube.DrawCube(vaoNum);
-		}
+		ourShader.setMat4("model", model);
+		////ourShader.setMat4("view", view);
+		TestSphere.CheckCollision();
+		//for (int i = 0; i < 1; i++)
+		//{
+		//	model = glm::translate(model, glm::vec3(i+0.2f, 0, 0));
+		//	ourShader.setMat4("model", model);
+		//	TestCube.DrawCube(vaoNum);
+		//}
+
+		TestSphere.DrawShape(vaoNum);
 		
 		glfwSwapBuffers(window);
 		glfwPollEvents();

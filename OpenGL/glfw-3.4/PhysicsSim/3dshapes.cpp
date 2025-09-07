@@ -103,3 +103,10 @@ void ThreeDShape::CheckCollision()
 		this->shapePosition.z = -1.5;
 	}
 }
+
+void ThreeDShape::DrawShape(unsigned int vaoNum)
+{
+	glBindVertexArray(vaoNum);
+
+	glDrawElements(GL_TRIANGLES, this->indices.size(), GL_UNSIGNED_INT, 0);
+}

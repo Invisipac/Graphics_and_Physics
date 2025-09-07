@@ -39,7 +39,7 @@ public:
 
 	void CreateAllBuffers(unsigned int* vboNum, unsigned int* eboNum, unsigned int* vaoNum);
 
-	void DrawShape();
+	void DrawShape(unsigned int vaoNum);
 
 	void Transform(glm::mat4 transformation);
 };

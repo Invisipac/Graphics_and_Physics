@@ -6,10 +6,13 @@
 #include <vector>
 
 
-class Sphere :ThreeDShape {
+class Sphere : public ThreeDShape {
 
 	int sectors;
 	int stacks;
+public:
+
+	Sphere(int sectors, int stacks);
 
 	void GenSphereVertices(float r);
 
