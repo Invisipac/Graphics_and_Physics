@@ -29,9 +29,9 @@ public:
 
 	void MoveShape(int updateRate, int &currentFrame);
 
-	void CheckCollision();
+	void CheckCollision(float rad, glm::vec3 bounds);
 
-	void Collide(float energyLoss);
+	void Collide(char direction, float energyLoss);
 
 	void CreateBuffer(unsigned int* vboNum);
 

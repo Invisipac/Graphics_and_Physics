@@ -104,7 +104,7 @@ int main()
 	TestSphere.GenSphereIndices();
 	TestSphere.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);
 	TestSphere.shapePosition = glm::vec3(0, 0, 0);
-	TestSphere.velocity = glm::vec3(0.1f, 0.05f, 0.05f);
+	TestSphere.velocity = glm::vec3(0.5f, 0.05f, 0.05f);
 	TestSphere.acceleration = glm::vec3(0, -0.00981f, 0);
 	//TestCube.CreateCubeBuffer(&vboNum);
 	//TestCube.CreateIndexBuffer(&eboNum);
@@ -127,12 +127,12 @@ int main()
 		ourShader.use();
 
 
-		total_angle += theta;
+		/*total_angle += theta;
 		if (fabs(total_angle - 360.0f) < 1e-5f)
 		{
 			total_angle = 0.0f;
 		}
-		model = Quaternion::Rotate(glm::vec3(1.0f, 0.0f, 0.0f), glm::radians(total_angle));
+		model = Quaternion::Rotate(glm::vec3(1.0f, 0.0f, 0.0f), glm::radians(total_angle));*/
 	
 		////TestCube.Transform(model);
 
@@ -147,12 +147,12 @@ int main()
 			time = glfwGetTime();
 		}
 
-		///*camera.AutoMoveCamera();
-		//view = camera.GetCameraMatrix(glm::vec3(0, 0, 0));*/
+		/*camera.AutoMoveCamera();
+		view = camera.GetCameraMatrix(glm::vec3(0, 0, 0));*/
 
-		ourShader.setMat4("model", model);
-		////ourShader.setMat4("view", view);
-		TestSphere.CheckCollision();
+		//ourShader.setMat4("model", model);
+		//ourShader.setMat4("view", view);
+		TestSphere.CheckCollision(0.5, glm::vec3(5, 3, 3));
 		//for (int i = 0; i < 1; i++)
 		//{
 		//	model = glm::translate(model, glm::vec3(i+0.2f, 0, 0));

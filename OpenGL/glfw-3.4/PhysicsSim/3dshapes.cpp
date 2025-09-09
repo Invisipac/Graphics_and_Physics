@@ -56,51 +56,63 @@ void ThreeDShape::MoveShape(int updateRate, int &currentFrame)
 	//}
 }
 
-void ThreeDShape::Collide(float energyLoss)
+void ThreeDShape::Collide(char direction, float energyLoss)
 {
-	this->velocity = -energyLoss * this->velocity;
+	if (direction == 'x')
+	{
+		this->velocity.x = - energyLoss * this->velocity.x;
+	}
+	else if (direction == 'y')
+	{
+		this->velocity.y = -energyLoss * this->velocity.y;
+	}
+	else if (direction == 'z')
+	{
+		this->velocity.z = -energyLoss * this->velocity.z;
+	}
+	
 }
 
-void ThreeDShape::CheckCollision()
+void ThreeDShape::CheckCollision(float rad, glm::vec3 bounds)
 {
-	if (this->shapePosition.x + 0.5 > 2)
+	if (this->shapePosition.x + rad > bounds.x)
 	{
 		//std::cout << "a" << std::endl;
-		this->Collide(0.95);
-		this->shapePosition.x = 1.5;
+		this->Collide('x', 0.95);
+		this->shapePosition.x = bounds.x - rad;
 	}
 
-	if (this->shapePosition.x - 0.5 < -2)
+	if (this->shapePosition.x - rad < -bounds.x)
 	{
-		this->Collide(0.95);
-		this->shapePosition.x = -1.5;
+		this->Collide('x', 0.95);
+		this->shapePosition.x = -bounds.x + rad;
 	}
 
-	if (this->shapePosition.y + 0.5 > 2)
-	{
-		//std::cout << "a" << std::endl;
-		this->Collide(0.95);
-		this->shapePosition.y = 1.5;
-	}
-
-	if (this->shapePosition.y - 0.5 < -2)
-	{
-		this->Collide(0.95);
-		this->shapePosition.y = -1.5;
-	}
-
-
-	if (this->shapePosition.z + 0.5 > 2)
+	if (this->shapePosition.y + rad > bounds.y)
 	{
 		//std::cout << "a" << std::endl;
-		this->Collide(0.95);
-		this->shapePosition.z = 1.5;
+		this->Collide('y', 0.95);
+		this->shapePosition.y = bounds.y - rad;
 	}
 
-	if (this->shapePosition.z - 0.5 < -2)
+	if (this->shapePosition.y - rad < -bounds.y)
 	{
-		this->Collide(0.95);
-		this->shapePosition.z = -1.5;
+		this->Collide('y', 0.95);
+		this->shapePosition.y = -bounds.y + rad;
+	}
+
+
+	if (this->shapePosition.z + rad > bounds.z)
+	{
+		//std::cout << "a" << std::endl;
+		this->Collide('z', 0.95);
+		this->shapePosition.z = bounds.z - rad;
+	}
+
+	if (this->shapePosition.z - rad < -bounds.z)
+	{
+		this->Collide('z', 0.95);
+		this->shapePosition.z = -bounds.z + rad;
 	}
 }
 
