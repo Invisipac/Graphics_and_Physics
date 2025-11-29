@@ -64,7 +64,7 @@ int main()
 	glm::mat4 proj = glm::mat4(1.0f);
 	proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 	
-	Shader ourShader("./vshader.txt", "./fshader.txt");
+	Shader ourShader("shaders/vshader.txt", "shaders/fshader.txt");
 
 
 	glEnable(GL_DEPTH_TEST);

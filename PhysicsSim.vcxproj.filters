@@ -22,55 +22,68 @@
     <Filter Include="Source Files\Camera">
       <UniqueIdentifier>{8bd094f4-9565-4e8b-ae55-d95f13b5fbcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{411f79e1-be61-41c1-99c1-ec3291defc05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{d70412e2-dbeb-4c95-a2e7-8d2d2ab80315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{63bc2ef7-8b99-4ddc-b033-6eb3deb99571}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\build\glad.c">
+    <ClCompile Include="OpenGL\glfw-3.4\build\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="window_setup.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\window_setup.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="test_shader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\test_shader.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="quaternion.cpp">
-      <Filter>Source Files\QuaternionTest</Filter>
+    <ClCompile Include="src\sphere.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="cube.cpp">
-      <Filter>Source Files\3DShapes</Filter>
+    <ClCompile Include="src\quaternion.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="3dshapes.cpp">
-      <Filter>Source Files\3DShapes</Filter>
+    <ClCompile Include="src\cube.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Source Files\Camera</Filter>
+    <ClCompile Include="src\camera.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="sphere.cpp">
-      <Filter>Source Files\3DShapes</Filter>
+    <ClCompile Include="src\3dshapes.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="test_shader.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="include\3dshapes.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="quaternion.h">
-      <Filter>Source Files\QuaternionTest</Filter>
+    <ClInclude Include="include\camera.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="3dshapes.h">
-      <Filter>Source Files\3DShapes</Filter>
+    <ClInclude Include="include\cube.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="cube.h">
-      <Filter>Source Files\3DShapes</Filter>
+    <ClInclude Include="include\quaternion.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>Source Files\Camera</Filter>
+    <ClInclude Include="include\sphere.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="sphere.h">
-      <Filter>Source Files\3DShapes</Filter>
+    <ClInclude Include="include\test_shader.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vshader.txt" />
-    <None Include="fshader.txt" />
+    <Text Include="shaders\fshader.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\vshader.txt">
+      <Filter>shaders</Filter>
+    </Text>
   </ItemGroup>
 </Project>

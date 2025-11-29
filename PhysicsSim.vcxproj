@@ -71,11 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;..\..\Libs_Include\Include;..\include;..\..\Libs_Include\Libs;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;..\..\Libs_Include\Include;..\include;..\..\Libs_Include\Libs;$(IncludePath)</IncludePath>
     <LibraryPath>..\include;..\..\Libs_Include\Libs;..\..\Libs_Include\Include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(ProjectDir)include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -133,26 +133,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\build\glad.c" />
-    <ClCompile Include="3dshapes.cpp" />
-    <ClCompile Include="camera.cpp" />
-    <ClCompile Include="cube.cpp" />
-    <ClCompile Include="quaternion.cpp" />
-    <ClCompile Include="sphere.cpp" />
-    <ClCompile Include="test_shader.cpp" />
-    <ClCompile Include="window_setup.cpp" />
+    <ClCompile Include="OpenGL\glfw-3.4\build\glad.c" />
+    <ClCompile Include="src\3dshapes.cpp" />
+    <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\cube.cpp" />
+    <ClCompile Include="src\quaternion.cpp" />
+    <ClCompile Include="src\sphere.cpp" />
+    <ClCompile Include="src\test_shader.cpp" />
+    <ClCompile Include="src\window_setup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="3dshapes.h" />
-    <ClInclude Include="camera.h" />
-    <ClInclude Include="cube.h" />
-    <ClInclude Include="quaternion.h" />
-    <ClInclude Include="sphere.h" />
-    <ClInclude Include="test_shader.h" />
+    <ClInclude Include="include\3dshapes.h" />
+    <ClInclude Include="include\camera.h" />
+    <ClInclude Include="include\cube.h" />
+    <ClInclude Include="include\quaternion.h" />
+    <ClInclude Include="include\sphere.h" />
+    <ClInclude Include="include\test_shader.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fshader.txt" />
-    <None Include="vshader.txt" />
+    <Text Include="shaders\fshader.txt" />
+    <Text Include="shaders\vshader.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
