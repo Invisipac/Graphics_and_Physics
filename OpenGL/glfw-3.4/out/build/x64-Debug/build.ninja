@@ -51,7 +51,7 @@ build uninstall: phony CMakeFiles\uninstall
 # Utility command for edit_cache
 
 build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -62,7 +62,7 @@ build edit_cache: phony CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -80,7 +80,7 @@ build list_install_components: phony
 # Utility command for install
 
 build CMakeFiles\install.util: CUSTOM_COMMAND all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -92,7 +92,7 @@ build install: phony CMakeFiles\install.util
 # Utility command for install/local
 
 build CMakeFiles\install\local.util: CUSTOM_COMMAND all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -104,7 +104,7 @@ build install\local: phony CMakeFiles\install\local.util
 # Custom command for CMakeFiles\uninstall
 
 build CMakeFiles\uninstall | ${cmake_ninja_workdir}CMakeFiles\uninstall: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P C:/Users/yairl/Programs/Graphics_and_Physics/OpenGL/glfw-3.4/out/build/x64-Debug/cmake_uninstall.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P C:/Users/yairl/Programs/Graphics_and_Physics/OpenGL/glfw-3.4/out/build/x64-Debug/cmake_uninstall.cmake"
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -338,7 +338,7 @@ build src\update_mappings: phony src\CMakeFiles\update_mappings
 # Utility command for edit_cache
 
 build src\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -349,7 +349,7 @@ build src\edit_cache: phony src\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build src\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -367,7 +367,7 @@ build src\list_install_components: phony
 # Utility command for install
 
 build src\CMakeFiles\install.util: CUSTOM_COMMAND src\all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -379,7 +379,7 @@ build src\install: phony src\CMakeFiles\install.util
 # Utility command for install/local
 
 build src\CMakeFiles\install\local.util: CUSTOM_COMMAND src\all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -391,7 +391,7 @@ build src\install\local: phony src\CMakeFiles\install\local.util
 # Custom command for src\CMakeFiles\update_mappings
 
 build src\CMakeFiles\update_mappings | ${cmake_ninja_workdir}src\CMakeFiles\update_mappings: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P C:/Users/yairl/Programs/Graphics_and_Physics/OpenGL/glfw-3.4/CMake/GenerateMappings.cmake mappings.h.in mappings.h"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P C:/Users/yairl/Programs/Graphics_and_Physics/OpenGL/glfw-3.4/CMake/GenerateMappings.cmake mappings.h.in mappings.h"
   DESC = Updating gamepad mappings from upstream repository
 
 # =============================================================================
@@ -950,7 +950,7 @@ build examples\windows.exe: C_EXECUTABLE_LINKER__windows_Debug examples\CMakeFil
 # Utility command for edit_cache
 
 build examples\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\examples && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\examples && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -961,7 +961,7 @@ build examples\edit_cache: phony examples\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build examples\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\examples && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\examples && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -979,7 +979,7 @@ build examples\list_install_components: phony
 # Utility command for install
 
 build examples\CMakeFiles\install.util: CUSTOM_COMMAND examples\all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\examples && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\examples && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -991,7 +991,7 @@ build examples\install: phony examples\CMakeFiles\install.util
 # Utility command for install/local
 
 build examples\CMakeFiles\install\local.util: CUSTOM_COMMAND examples\all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\examples && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\examples && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -1849,7 +1849,7 @@ build tests\window.exe: C_EXECUTABLE_LINKER__window_Debug tests\CMakeFiles\windo
 # Utility command for edit_cache
 
 build tests\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\tests && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\tests && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -1860,7 +1860,7 @@ build tests\edit_cache: phony tests\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build tests\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\tests && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\tests && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -1878,7 +1878,7 @@ build tests\list_install_components: phony
 # Utility command for install
 
 build tests\CMakeFiles\install.util: CUSTOM_COMMAND tests\all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\tests && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\tests && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -1890,7 +1890,7 @@ build tests\install: phony tests\CMakeFiles\install.util
 # Utility command for install/local
 
 build tests\CMakeFiles\install\local.util: CUSTOM_COMMAND tests\all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\tests && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\tests && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -1907,7 +1907,7 @@ build tests\install\local: phony tests\CMakeFiles\install\local.util
 # Utility command for edit_cache
 
 build docs\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\docs && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\docs && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -1918,7 +1918,7 @@ build docs\edit_cache: phony docs\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build docs\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\docs && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\docs && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4 -BC:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -1936,7 +1936,7 @@ build docs\list_install_components: phony
 # Utility command for install
 
 build docs\CMakeFiles\install.util: CUSTOM_COMMAND docs\all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\docs && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\docs && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -1948,7 +1948,7 @@ build docs\install: phony docs\CMakeFiles\install.util
 # Utility command for install/local
 
 build docs\CMakeFiles\install\local.util: CUSTOM_COMMAND docs\all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\docs && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\out\build\x64-Debug\docs && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1

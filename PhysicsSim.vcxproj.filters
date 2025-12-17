@@ -57,6 +57,9 @@
     <ClCompile Include="src\3dshapes.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\orbit_sim.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\3dshapes.h">
@@ -75,6 +78,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\test_shader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\orbit_sim.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

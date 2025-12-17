@@ -11,6 +11,7 @@
 #include "3dshapes.h"
 #include "camera.h"
 #include "sphere.h"
+#include "orbit_sim.h"
 
 using namespace std;
 
@@ -59,7 +60,7 @@ int main()
 	model = Q.GetRotationMatrix();
 
 	glm::mat4 view = glm::mat4(1.0f);
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -5.0f));
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -10.0f));
 
 	glm::mat4 proj = glm::mat4(1.0f);
 	proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
@@ -74,12 +75,12 @@ int main()
 
 	int frame = 0;
 
-	Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
-
+	Camera camera(glm::vec3(0.0f, 20.0f, 0.0f));
+	
 	ourShader.use();
 
 	ourShader.setMat4("model", model);
-	ourShader.setMat4("view", view);
+	
 	ourShader.setMat4("projection", proj);
 
 	float theta = 0.7f;
@@ -99,13 +100,27 @@ int main()
 	TestCube.GenIndices();
 	TestCube.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);*/
 
-	Sphere TestSphere(20, 20);
+	/*Sphere TestSphere(20, 20);
 	TestSphere.GenSphereVertices(1);
 	TestSphere.GenSphereIndices();
 	TestSphere.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);
 	TestSphere.shapePosition = glm::vec3(0, 0, 0);
 	TestSphere.velocity = glm::vec3(0.5f, 0.05f, 0.05f);
-	TestSphere.acceleration = glm::vec3(0, -0.00981f, 0);
+	TestSphere.acceleration = glm::vec3(0, -0.00981f, 0);*/
+
+	
+	OrbitSim simulation(0.005f, 1000.0f);
+	simulation.initBodies(glm::vec3(0, 0, 0), glm::vec3(7.0f, 0, 0));
+	Sphere sphereForSim = simulation.getCentralSphere();
+	sphereForSim.GenSphereVertices(1);
+	sphereForSim.GenSphereIndices();
+	sphereForSim.CreateAllBuffers(&vboNum, &eboNum, &vaoNum);
+
+
+	view = camera.GetCameraMatrix(simulation.getCentralPos());
+
+	ourShader.setMat4("view", view);
+
 	//TestCube.CreateCubeBuffer(&vboNum);
 	//TestCube.CreateIndexBuffer(&eboNum);
 
@@ -141,8 +156,9 @@ int main()
 		//
 		if (glfwGetTime() - time >= 1.0f / 80.0f)
 		{
-			TestSphere.MoveShape(10, frame);
-			ourShader.setVec3("displacement", TestSphere.shapePosition);
+			//TestSphere.MoveShape(10, frame);
+			simulation.moveBody();
+			//ourShader.setVec3("displacement", TestSphere.shapePosition);
 
 			time = glfwGetTime();
 		}
@@ -152,7 +168,7 @@ int main()
 
 		//ourShader.setMat4("model", model);
 		//ourShader.setMat4("view", view);
-		TestSphere.CheckCollision(0.5, glm::vec3(5, 3, 3));
+		//TestSphere.CheckCollision(0.5, glm::vec3(5, 3, 3));
 		//for (int i = 0; i < 1; i++)
 		//{
 		//	model = glm::translate(model, glm::vec3(i+0.2f, 0, 0));
@@ -160,8 +176,17 @@ int main()
 		//	TestCube.DrawCube(vaoNum);
 		//}
 
-		TestSphere.DrawShape(vaoNum);
+		//TestSphere.DrawShape(vaoNum);
 		
+		ourShader.setVec3("displacement", simulation.getCentralPos());
+		sphereForSim.DrawShape(vaoNum);
+		printf("pos: x = %f, y = %f, z = %f \n", simulation.getOrbitingPos().x, simulation.getOrbitingPos().y, simulation.getOrbitingPos().z);
+		ourShader.setVec3("displacement", simulation.getOrbitingPos());
+		sphereForSim.DrawShape(vaoNum);
+
+		//simulation.drawBodies(vaoNum);
+
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

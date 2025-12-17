@@ -137,6 +137,7 @@
     <ClCompile Include="src\3dshapes.cpp" />
     <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\cube.cpp" />
+    <ClCompile Include="src\orbit_sim.cpp" />
     <ClCompile Include="src\quaternion.cpp" />
     <ClCompile Include="src\sphere.cpp" />
     <ClCompile Include="src\test_shader.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="include\3dshapes.h" />
     <ClInclude Include="include\camera.h" />
     <ClInclude Include="include\cube.h" />
+    <ClInclude Include="include\orbit_sim.h" />
     <ClInclude Include="include\quaternion.h" />
     <ClInclude Include="include\sphere.h" />
     <ClInclude Include="include\test_shader.h" />

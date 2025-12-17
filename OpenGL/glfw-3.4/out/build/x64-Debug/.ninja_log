@@ -1,0 +1,25 @@
+# ninja log v6
+103	835	7876934811433778	tests/CMakeFiles/allocator.dir/allocator.c.obj	215908fc59d2d03b
+986	1155	7876934820264013	src/glfw3.lib	1b91b865b1aaf090
+52	939	7876934810920519	src/CMakeFiles/glfw.dir/platform.c.obj	3e22286ae85c3ccd
+85	946	7876934811248717	src/CMakeFiles/glfw.dir/win32_thread.c.obj	2d720313b570bf8c
+79	950	7876934811198649	src/CMakeFiles/glfw.dir/win32_module.c.obj	9b6756fdc10d5213
+88	943	7876934811288834	src/CMakeFiles/glfw.dir/win32_init.c.obj	613e82a0d3f1d2b6
+76	948	7876934811162021	src/CMakeFiles/glfw.dir/null_joystick.c.obj	61bf25fe69fe61cc
+67	952	7876934811070068	src/CMakeFiles/glfw.dir/null_init.c.obj	2e5af6a810f3cf3b
+64	954	7876934811050061	src/CMakeFiles/glfw.dir/osmesa_context.c.obj	4b2b097081e5d86f
+73	959	7876934811131855	src/CMakeFiles/glfw.dir/null_window.c.obj	5b6732ab4347643e
+70	956	7876934811105156	src/CMakeFiles/glfw.dir/null_monitor.c.obj	44c0f083ad858504
+61	974	7876934811020066	src/CMakeFiles/glfw.dir/egl_context.c.obj	20517a8857f66fa
+82	958	7876934811228713	src/CMakeFiles/glfw.dir/win32_time.c.obj	fc85a2d224cf4800
+48	961	7876934810882882	src/CMakeFiles/glfw.dir/monitor.c.obj	f9051521273872c1
+100	963	7876934811403780	src/CMakeFiles/glfw.dir/wgl_context.c.obj	8c5f5161e45f9905
+55	965	7876934810959132	src/CMakeFiles/glfw.dir/vulkan.c.obj	46dedea8244d4c90
+58	967	7876934810984990	src/CMakeFiles/glfw.dir/window.c.obj	9e3aac62b1ca14df
+45	969	7876934810847841	src/CMakeFiles/glfw.dir/input.c.obj	a8f5a825e52ef3ae
+16	970	7876934810565475	src/CMakeFiles/glfw.dir/context.c.obj	5b9b38b827818a46
+91	972	7876934811320088	src/CMakeFiles/glfw.dir/win32_joystick.c.obj	fab7eb2b303c0832
+97	976	7876934811383740	src/CMakeFiles/glfw.dir/win32_window.c.obj	c769fe53a1126357
+20	978	7876934810611173	src/CMakeFiles/glfw.dir/init.c.obj	eb46b6ebef1ce906
+94	986	7876934811346200	src/CMakeFiles/glfw.dir/win32_monitor.c.obj	f3184f90b3b23293
+1156	1656	7876934821966845	tests/allocator.exe	557a719e8563702f
