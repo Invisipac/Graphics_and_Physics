@@ -13,7 +13,7 @@ Camera::Camera(glm::vec3 startPosition)
 
 glm::mat4 Camera::GetCameraMatrix(glm::vec3 target)
 {
-	glm::mat4 view = glm::lookAt(this->position, target, glm::vec3(0.0f, 0.0f, -1.0f));
+	glm::mat4 view = glm::lookAt(this->position, target, glm::vec3(0.0f, 1.0f, 0.0f));
 
 	return view;
 }

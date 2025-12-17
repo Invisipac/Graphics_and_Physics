@@ -14,6 +14,11 @@ class OrbitSim {
 	glm::vec3 orbitalRadius;
 	glm::vec3 orbitalVelocity;
 	glm::vec3 orbitalAcceleration;
+
+	glm::vec3 centralVelocity;
+	glm::vec3 centralAcceleration;
+
+
 	float dt;
 	float dtSquared;
 
@@ -23,7 +28,7 @@ class OrbitSim {
 	float radiusMagnitude;
 
 public:
-	OrbitSim(float time_step, float centralMass);
+	OrbitSim(float time_step, float centralMass, float orbitingMass);
 
 	void initBodies(glm::vec3 centralPos, glm::vec3 orbitingPos);
 

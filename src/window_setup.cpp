@@ -75,7 +75,7 @@ int main()
 
 	int frame = 0;
 
-	Camera camera(glm::vec3(0.0f, 20.0f, 0.0f));
+	Camera camera(glm::vec3(0.0f, 0.0f, 10.0f));
 	
 	ourShader.use();
 
@@ -109,7 +109,7 @@ int main()
 	TestSphere.acceleration = glm::vec3(0, -0.00981f, 0);*/
 
 	
-	OrbitSim simulation(0.005f, 1000.0f);
+	OrbitSim simulation(0.005f, 1000.0f, 1000.0f);
 	simulation.initBodies(glm::vec3(0, 0, 0), glm::vec3(7.0f, 0, 0));
 	Sphere sphereForSim = simulation.getCentralSphere();
 	sphereForSim.GenSphereVertices(1);
