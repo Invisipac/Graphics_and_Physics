@@ -12,35 +12,35 @@ void Cube::SetCubeVertices() {
 	this->vertices =
 	{
 		//Front
-		Vertex{glm::vec3(-s, s, s), glm::vec3(1, 0, 0), glm::vec3(0, 0, 1)}, //front top left
-		Vertex{glm::vec3(s, s, s), glm::vec3(1, 0, 0), glm::vec3(0, 0, 1)}, //front top right
-		Vertex{ glm::vec3(-s, -s, s), glm::vec3(1, 0, 0), glm::vec3(0, 0, 1)}, //front bottom left
-		Vertex{glm::vec3(s, -s, s), glm::vec3(1, 0, 0), glm::vec3(0, 0, 1)}, //front bottom right
+		OldVertex{glm::vec3(-s, s, s), glm::vec3(1, 0, 0), glm::vec3(0, 0, 1)}, //front top left
+		OldVertex{glm::vec3(s, s, s), glm::vec3(1, 0, 0), glm::vec3(0, 0, 1)}, //front top right
+		OldVertex{ glm::vec3(-s, -s, s), glm::vec3(1, 0, 0), glm::vec3(0, 0, 1)}, //front bottom left
+		OldVertex{glm::vec3(s, -s, s), glm::vec3(1, 0, 0), glm::vec3(0, 0, 1)}, //front bottom right
 		//Right
-		Vertex{glm::vec3(s, s, s), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0)}, //front top right
-		Vertex{glm::vec3(s, -s, s), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0)}, //front bottom right
-		Vertex{glm::vec3(s, s, -s) , glm::vec3(0, 1, 0), glm::vec3(1, 0, 0)}, //back top right
-		Vertex{glm::vec3(s, -s, -s), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0)}, //back bottom right
+		OldVertex{glm::vec3(s, s, s), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0)}, //front top right
+		OldVertex{glm::vec3(s, -s, s), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0)}, //front bottom right
+		OldVertex{glm::vec3(s, s, -s) , glm::vec3(0, 1, 0), glm::vec3(1, 0, 0)}, //back top right
+		OldVertex{glm::vec3(s, -s, -s), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0)}, //back bottom right
 		//Left
-		Vertex{ glm::vec3(-s, s, s), glm::vec3(1, 1, 0), glm::vec3(-1, 0, 0)}, //front top left
-		Vertex{ glm::vec3(-s, -s, s), glm::vec3(1, 1, 0), glm::vec3(-1, 0, 0)}, //front bottom left
-		Vertex{glm::vec3(-s, s, -s), glm::vec3(1, 1, 0), glm::vec3(-1, 0, 0)}, //back top left
-		Vertex{ glm::vec3(-s, -s, -s), glm::vec3(1, 1, 0), glm::vec3(-1, 0, 0) },//back bottom left
+		OldVertex{ glm::vec3(-s, s, s), glm::vec3(1, 1, 0), glm::vec3(-1, 0, 0)}, //front top left
+		OldVertex{ glm::vec3(-s, -s, s), glm::vec3(1, 1, 0), glm::vec3(-1, 0, 0)}, //front bottom left
+		OldVertex{glm::vec3(-s, s, -s), glm::vec3(1, 1, 0), glm::vec3(-1, 0, 0)}, //back top left
+		OldVertex{ glm::vec3(-s, -s, -s), glm::vec3(1, 1, 0), glm::vec3(-1, 0, 0) },//back bottom left
 		//Top
-		Vertex{ glm::vec3(-s, s, s), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0)}, //front top left
-		Vertex{ glm::vec3(s, s, s), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0) }, //front top right
-		Vertex{ glm::vec3(-s, s, -s), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0) }, //back top left
-		Vertex{ glm::vec3(s, s, -s) , glm::vec3(0, 0, 1), glm::vec3(0, 1, 0) }, //back top right
+		OldVertex{ glm::vec3(-s, s, s), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0)}, //front top left
+		OldVertex{ glm::vec3(s, s, s), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0) }, //front top right
+		OldVertex{ glm::vec3(-s, s, -s), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0) }, //back top left
+		OldVertex{ glm::vec3(s, s, -s) , glm::vec3(0, 0, 1), glm::vec3(0, 1, 0) }, //back top right
 		//Bottom
-		Vertex{ glm::vec3(-s, -s, s), glm::vec3(0, 1, 1), glm::vec3(0, -1, 0)}, //front bottom left
-		Vertex{glm::vec3(s, -s, s), glm::vec3(0, 1, 1), glm::vec3(0, -1, 0)}, //front bottom right
-		Vertex{ glm::vec3(-s, -s, -s), glm::vec3(0, 1, 1), glm::vec3(0, -1, 0) },//back bottom left
-		Vertex{ glm::vec3(s, -s, -s), glm::vec3(0, 1, 1), glm::vec3(0, -1, 0) }, //back bottom right
+		OldVertex{ glm::vec3(-s, -s, s), glm::vec3(0, 1, 1), glm::vec3(0, -1, 0)}, //front bottom left
+		OldVertex{glm::vec3(s, -s, s), glm::vec3(0, 1, 1), glm::vec3(0, -1, 0)}, //front bottom right
+		OldVertex{ glm::vec3(-s, -s, -s), glm::vec3(0, 1, 1), glm::vec3(0, -1, 0) },//back bottom left
+		OldVertex{ glm::vec3(s, -s, -s), glm::vec3(0, 1, 1), glm::vec3(0, -1, 0) }, //back bottom right
 		//Back
-		Vertex{glm::vec3(-s, s, -s), glm::vec3(1, 0, 1), glm::vec3(0, 0, -1)}, //back top left
-		Vertex{glm::vec3(s, s, -s) , glm::vec3(1, 0, 1), glm::vec3(0, 0, -1)}, //back top right
-		Vertex{glm::vec3(-s, -s, -s), glm::vec3(1, 0, 1), glm::vec3(0, 0, -1)},//back bottom left
-		Vertex{glm::vec3(s, -s, -s), glm::vec3(0, 0, 0), glm::vec3(0, 0, -1)} //back bottom right	
+		OldVertex{glm::vec3(-s, s, -s), glm::vec3(1, 0, 1), glm::vec3(0, 0, -1)}, //back top left
+		OldVertex{glm::vec3(s, s, -s) , glm::vec3(1, 0, 1), glm::vec3(0, 0, -1)}, //back top right
+		OldVertex{glm::vec3(-s, -s, -s), glm::vec3(1, 0, 1), glm::vec3(0, 0, -1)},//back bottom left
+		OldVertex{glm::vec3(s, -s, -s), glm::vec3(0, 0, 0), glm::vec3(0, 0, -1)} //back bottom right	
 		}; 
 	}
 
@@ -62,7 +62,7 @@ void Cube::SetCubeVertices() {
 	{
 		glGenBuffers(1, vboNum);
 		glBindBuffer(GL_ARRAY_BUFFER, *vboNum);
-		glBufferData(GL_ARRAY_BUFFER, this->vertices.size() * sizeof(Vertex), &this->vertices[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, this->vertices.size() * sizeof(OldVertex), &this->vertices[0], GL_STATIC_DRAW);
 	}
 
 	void Cube::CreateIndexBuffer(unsigned int* eboNum)
@@ -81,9 +81,9 @@ void Cube::SetCubeVertices() {
 		this->CreateCubeBuffer(vboNum);
 		this->CreateIndexBuffer(eboNum);
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *) offsetof(Vertex, position));
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *) offsetof(Vertex, colour));
-		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *) offsetof(Vertex, normal));
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(OldVertex), (void *) offsetof(OldVertex, position));
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(OldVertex), (void *) offsetof(OldVertex, colour));
+		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(OldVertex), (void *) offsetof(OldVertex, normal));
 
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);

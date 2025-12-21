@@ -31,6 +31,9 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{63bc2ef7-8b99-4ddc-b033-6eb3deb99571}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{e8c2f41e-ce46-430c-affa-0b33e43d09d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpenGL\glfw-3.4\build\glad.c">
@@ -54,17 +57,23 @@
     <ClCompile Include="src\camera.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\orbit_sim.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\3dshapes.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\orbit_sim.cpp">
+    <ClCompile Include="src\scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneTesting.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesh.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\3dshapes.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\camera.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -81,6 +90,15 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\orbit_sim.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\3dshapes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,15 +5,15 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-typedef struct _Vertex {
+typedef struct _OldVertex {
 	glm::vec3 position;
 	glm::vec3 colour;
 	glm::vec3 normal;
-} Vertex;
+} OldVertex;
 
 class ThreeDShape {
 public:
-	std::vector<Vertex> vertices;
+	std::vector<OldVertex> vertices;
 	std::vector<int> indices;
 	glm::vec3 shapePosition;
 	glm::vec3 velocity;
