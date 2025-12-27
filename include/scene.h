@@ -19,4 +19,5 @@ public:
 	void loadMeshes(aiNode* node, const aiScene* scene);
 	void drawScene(Shader &shader);
 	Mesh initMesh(aiMesh* mesh);
+	std::vector <Mesh> getMeshes();
 };

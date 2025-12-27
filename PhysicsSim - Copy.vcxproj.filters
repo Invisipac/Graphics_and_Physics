@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="OpenGL\glfw-3.4\build\glad.c" />
+    <ClCompile Include="src\camera.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesh.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\quaternion.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test_shader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\raytracer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\camera.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\quaternion.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\test_shader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\raytracer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="shaders\fshader.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\vshader.txt">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\raytrace.glsl">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\quad_frag.glsl">
+      <Filter>shaders</Filter>
+    </Text>
+    <Text Include="shaders\quad_vert.glsl">
+      <Filter>shaders</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{3701624c-3704-4daf-96d1-e5b78169a530}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{d32c47ea-8866-4386-bec0-c23e6be1f0d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{6cf28dc5-9dde-4e94-9e66-22bf5de154ef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

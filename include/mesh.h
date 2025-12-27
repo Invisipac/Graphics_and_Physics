@@ -24,4 +24,6 @@ public:
 	/*void initMesh(aiMesh* mesh);*/ //read from mesh file and load data into the vertices vector
 	void setBuffers(); //setup opengl vertex, index, texture, and attribute buffers
 	void drawMesh(Shader& shader); //bind and unbind the respective buffers, then call GL_DRAW
+	std::vector <Vertex> getVertices();
+	std::vector <unsigned int> getIndices();
 };

@@ -70,3 +70,7 @@ void Scene::drawScene(Shader& shader) {
 		this->meshes[i].drawMesh(shader);
 	}
 }
+
+std::vector <Mesh> Scene::getMeshes() {
+	return this->meshes;
+}

@@ -53,3 +53,11 @@ void Mesh::drawMesh(Shader& shader) {
 	glDrawElements(GL_TRIANGLES, this->indices.size(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }
+
+std::vector <Vertex> Mesh::getVertices() {
+	return this->vertices;
+}
+
+std::vector <unsigned int> Mesh::getIndices() {
+	return this->indices;
+}
