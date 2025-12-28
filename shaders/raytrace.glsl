@@ -18,6 +18,8 @@ uniform mat4 projection;
 float camDist = 0.1;
 float width = 2 * camDist * tan(radians(22.5));
 float height = 0.75 * width;
+vec3 lightPos = vec3(0.0, 0.0, 0.0);
+float lightRadius = 1000000.0;
 
 struct Triangle {
     vec3 v1;
@@ -31,14 +33,15 @@ struct Ray {
     vec3 direction;
 };
 
-float getColourFactor(Triangle triangle, Ray ray) {
+float getColourFactor(Triangle triangle, vec3 rayDirection) {
     
-    float factor = max(0.0, 5 * dot(triangle.normal, -ray.direction));
+    float factor = max(0.0, dot(triangle.normal, rayDirection));
     return factor;
-
 }
 
-bool rayIntersectedTriangle(Ray ray, Triangle triangle) {
+
+
+vec3 rayIntersectedTriangle(Ray ray, Triangle triangle) {
     vec3 side1 = triangle.v2 - triangle.v1;
     vec3 side2 = triangle.v3 - triangle.v1;
     vec3 negDir = - ray.direction;
@@ -49,15 +52,41 @@ bool rayIntersectedTriangle(Ray ray, Triangle triangle) {
 
     if (abs(det) > 0.0000001){
         mat3 inverseIntersect = inverse(checkIntersect);
-        vec3 intPoint = inverseIntersect * (ray.origin - triangle.v1);
-        float sum = intPoint.y + intPoint.z;
-        return sum >= 0 && sum <= 1 && intPoint.y >= 0 && intPoint.z >= 0;
+        return inverseIntersect * (ray.origin - triangle.v1);
     }
     else {
-        return false;
+        return vec3(-1, -1, -1);
     }
-    
 };
+
+bool checkIfHit(vec3 barycentricPoint) {
+    float sum = barycentricPoint.y + barycentricPoint.z;
+    return sum >= 0 && sum <= 1 && barycentricPoint.y >= 0 && barycentricPoint.z >= 0;
+}
+
+Ray getReflectedRay(vec3 originPoint, vec3 hitPoint, vec3 normal) {
+        
+    vec3 incidentDir = hitPoint - originPoint;
+
+    vec3 reflectedDir = normalize(incidentDir - 2*dot(incidentDir, normal)*normal);
+
+    struct Ray reflectedRay = {hitPoint, reflectedDir};
+
+    return reflectedRay;
+
+}
+
+bool reachesLightSource(Ray ray) {
+    
+    float a = 1;
+    float b = 2*dot(ray.direction, ray.origin) - 2*dot(ray.direction, lightPos);
+    float c = -pow(lightRadius, 2.0) + pow(length(ray.origin), 2.0) - 2*dot(ray.origin, lightPos) + pow(length(lightPos), 2.0);
+
+    float discriminant = pow(b, 2.0) - 4 * c;
+
+    return discriminant >= 0;
+
+}
 
 void main() {
 
@@ -67,9 +96,12 @@ void main() {
   vec3 origin = vec3(0.0, 10.0, 0.0);
   float xPrime = (x/800.0 * width) - width/2;
   float yPrime = (y/600.0 * height) - height/2;
-  vec3 direction = vec3(xPrime, -camDist, -yPrime);
-
+  vec3 direction = normalize(vec3(xPrime, -camDist, -yPrime));
   struct Ray ray = {origin, direction};
+  float curMaxDepth = -1000000000.0;
+  struct Triangle curMaxTriangle = {vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 0.0)};
+  vec3 maxHitPoint = vec3(0.0, 0.0, 0.0);
+
 
   for (int i = 0; i < Indices.length(); i += 3) {
     vec3 v1 = Positions[Indices[i]].xyz;
@@ -80,19 +112,29 @@ void main() {
     vec3 s2 = v3 - v1;
     vec3 normal = cross(s1, s2);
 
+    float normalSign = normal.y/abs(normal.y);
+    normal *= normalSign;
+    normal = normalize(normal);
+
     struct Triangle triangle = {v1, v2, v3, normal};
+    vec3 hitPointBary = rayIntersectedTriangle(ray, triangle);
+    vec3 hitPoint = origin + hitPointBary.x * direction;
+    //float depth = hitPoint.y;
 
-    bool didHit = rayIntersectedTriangle(ray, triangle);
-
+    bool didHit = checkIfHit(hitPointBary);
     
     if (didHit){
-        float colFactor = getColourFactor(triangle, ray);
-        vec4 colour = vec4(1.0, 0.0, 0.0, 1.0);
-        imageStore(img_output, pix, colour);
-        break;
-    }
-
-    
+        if (hitPoint.y >= curMaxDepth) {            
+            curMaxTriangle = triangle;
+            maxHitPoint = hitPoint;
+            curMaxDepth = hitPoint.y;
+      }
+    } 
   }
+    struct Ray reflection = getReflectedRay(origin, maxHitPoint, curMaxTriangle.normal);
+    bool hitLightSource = reachesLightSource(reflection);
+    float colFactor = getColourFactor(curMaxTriangle, reflection.direction);
+    vec4 colour = vec4(colFactor * float(hitLightSource) * 1.0, 0.0, 0.0, 1.0);//vec4(colFactor * 1.0, 0.0, 0.0, 1.0);
+    imageStore(img_output, pix, colour);
 
 }
