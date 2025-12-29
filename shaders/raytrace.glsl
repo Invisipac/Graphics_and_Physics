@@ -18,8 +18,8 @@ uniform mat4 projection;
 float camDist = 0.1;
 float width = 2 * camDist * tan(radians(22.5));
 float height = 0.75 * width;
-vec3 lightPos = vec3(0.0, 0.0, 0.0);
-float lightRadius = 1000000.0;
+vec3 lightPos = vec3(-2.0, 0.0, 0.0);
+float lightRadius = 2.0;
 
 struct Triangle {
     vec3 v1;
@@ -82,9 +82,13 @@ bool reachesLightSource(Ray ray) {
     float b = 2*dot(ray.direction, ray.origin) - 2*dot(ray.direction, lightPos);
     float c = -pow(lightRadius, 2.0) + pow(length(ray.origin), 2.0) - 2*dot(ray.origin, lightPos) + pow(length(lightPos), 2.0);
 
-    float discriminant = pow(b, 2.0) - 4 * c;
+    float discriminant = pow(dot(ray.direction, ray.origin - lightPos) , 2.0) - (pow(length(ray.origin - lightPos) ,2.0) - pow(lightRadius,2.0));
+    //pow(b, 2.0) - 4 * c;
 
-    return discriminant >= 0;
+    float root1 = (-b + discriminant)/2;
+    float root2 = (-b - discriminant)/2;
+
+    return discriminant >= 0 && (root1 > 0 || root2 > 0);
 
 }
 
