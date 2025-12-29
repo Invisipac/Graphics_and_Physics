@@ -13,6 +13,7 @@ void RayTracer::extractDataFromScene() {
 
 	int vertexOffset = 0;
 
+	float meshIndexOffset = 0;
 	for (unsigned int i = 0; i < meshes.size(); i++) {
 		std::vector <Vertex> meshVertices = meshes[i].getVertices();
 		std::vector <unsigned int> meshIndices = meshes[i].getIndices();
@@ -32,14 +33,17 @@ void RayTracer::extractDataFromScene() {
 		for (unsigned int j = 0; j < meshVertices.size(); j++) {
 			//std::cout << "Pos " << j << "  " << meshVertices[j].position.x << " , " << meshVertices[j].position.y << " , " << meshVertices[j].position.z << std::endl;
 			this->positions.push_back(glm::vec4(meshVertices[j].position, 1.0f));
+			this->normals.push_back(glm::vec4(meshVertices[j].normal, 1.0f));
 		}
 
 		vertexOffset += meshVertices.size();
 
 		for (unsigned int j = 0; j < meshIndices.size(); j++) {
 			//std::cout << "idx " << meshIndices[j] << std::endl;
-			this->indices.push_back(meshIndices[j]);
+			this->indices.push_back(meshIndices[j] + meshIndexOffset);	
 		}
+
+		meshIndexOffset += meshVertices.size();
 	}
 
 	std::cout << "Total vertices: " << this->positions.size() << std::endl;
@@ -50,6 +54,7 @@ void RayTracer::setBuffers() {
 	glGenBuffers(1, &this->verticesBuffer);
 	glGenBuffers(1, &this->indicesBuffer);
 	glGenBuffers(1, &this->quadBuffer);
+	glGenBuffers(1, &this->normalBuffer);
 
 	// Make sure no other buffer is bound
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -63,12 +68,17 @@ void RayTracer::setBuffers() {
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, this->indicesBuffer);
 	glBufferData(GL_SHADER_STORAGE_BUFFER, this->indices.size() * sizeof(unsigned int), this->indices.data(), GL_STATIC_DRAW);
 
+	//NORMAL BUFFER
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, this->normalBuffer);
+	glBufferData(GL_SHADER_STORAGE_BUFFER, this->normals.size() * sizeof(glm::vec4), this->normals.data(), GL_STATIC_DRAW);
+
 	// Unbind SSBO
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 
 	// Now bind to shader binding points
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, this->verticesBuffer);
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, this->indicesBuffer);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 3, this->normalBuffer);
 
 	// Don't create VAOs for SSBO buffers - you don't need them for compute shaders! 
 

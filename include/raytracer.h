@@ -7,9 +7,10 @@
 #include "scene.h"
 class RayTracer {
 	Scene scene;
-	unsigned int verticesBuffer, texBuffer, indicesBuffer, quadBuffer, quadVao, posVao, indicesVao, shaderID, computeShaderID;
+	unsigned int verticesBuffer, texBuffer, indicesBuffer, normalBuffer, quadBuffer, quadVao, posVao, indicesVao, shaderID, computeShaderID;
 	std::vector <glm::vec4> positions;
 	std::vector <unsigned int> indices;
+	std::vector <glm::vec4> normals;
 public:
 	RayTracer(std::string path);
 	void extractDataFromScene();
