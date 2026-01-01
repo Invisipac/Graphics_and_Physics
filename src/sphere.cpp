@@ -19,10 +19,10 @@ void Sphere::GenSphereVertices(float r)
 	float theta = M_PI / this->stacks;
 	float phi = (2 * M_PI) / this->sectors;
 
-	Vertex topVertex = Vertex{glm::vec3(0, r, 0), this->RED, glm::vec3(0, 1, 0) };
-	Vertex bottomVertex = Vertex{ glm::vec3(0, -r, 0), this->RED, glm::vec3(0, -1, 0) };
+	OldVertex topOldVertex = OldVertex{glm::vec3(0, r, 0), this->RED, glm::vec3(0, 1, 0) };
+	OldVertex bottomOldVertex = OldVertex{ glm::vec3(0, -r, 0), this->RED, glm::vec3(0, -1, 0) };
 
-	this->vertices.push_back(bottomVertex);
+	this->vertices.push_back(bottomOldVertex);
 
 	for (int i = 1; i < this->stacks; i++)
 	{
@@ -38,13 +38,13 @@ void Sphere::GenSphereVertices(float r)
 
 			glm::vec3 normal = (1 / r) * coord;
 
-			Vertex vert = Vertex{ coord, colour, normal };
+			OldVertex vert = OldVertex{ coord, colour, normal };
 
 			this->vertices.push_back(vert);
 		}
 	}
 
-	this->vertices.push_back(topVertex);
+	this->vertices.push_back(topOldVertex);
 
 }
 

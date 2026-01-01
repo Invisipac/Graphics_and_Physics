@@ -71,11 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;..\..\Libs_Include\Include;..\include;..\..\Libs_Include\Libs;$(IncludePath)</IncludePath>
-    <LibraryPath>..\include;..\..\Libs_Include\Libs;..\..\Libs_Include\Include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)Assimp\include;$(ProjectDir)include;$(ProjectDir)OpenGL\glfw-3.4\include;$(ProjectDir)OpenGL\Libs_Include\Include;..\..\Libs_Include\Include;..\include;..\..\Libs_Include\Libs;$(IncludePath)</IncludePath>
+    <LibraryPath>..\include;..\..\Libs_Include\Libs;..\..\Libs_Include\Include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Libs;$(ProjectDir)Assimp\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\glfw-3.4\include;C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(ProjectDir)Assimp\include;$(ProjectDir)include;$(ProjectDir)OpenGL\glfw-3.4\include;$(ProjectDir)OpenGL\Libs_Include\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>C:\Users\yairl\Programs\Graphics_and_Physics\OpenGL\Libs_Include\Libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -88,7 +88,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp-vc143-mt.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -115,7 +116,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies);glfw3.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;assimp-vc143-mt.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,8 +139,11 @@
     <ClCompile Include="src\3dshapes.cpp" />
     <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\cube.cpp" />
+    <ClCompile Include="src\mesh.cpp" />
     <ClCompile Include="src\orbit_sim.cpp" />
     <ClCompile Include="src\quaternion.cpp" />
+    <ClCompile Include="src\scene.cpp" />
+    <ClCompile Include="src\SceneTesting.cpp" />
     <ClCompile Include="src\sphere.cpp" />
     <ClCompile Include="src\test_shader.cpp" />
     <ClCompile Include="src\window_setup.cpp" />
@@ -147,8 +152,10 @@
     <ClInclude Include="include\3dshapes.h" />
     <ClInclude Include="include\camera.h" />
     <ClInclude Include="include\cube.h" />
+    <ClInclude Include="include\mesh.h" />
     <ClInclude Include="include\orbit_sim.h" />
     <ClInclude Include="include\quaternion.h" />
+    <ClInclude Include="include\scene.h" />
     <ClInclude Include="include\sphere.h" />
     <ClInclude Include="include\test_shader.h" />
   </ItemGroup>

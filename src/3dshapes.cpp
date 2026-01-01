@@ -6,14 +6,14 @@
 
 void ThreeDShape::UpdateVertexBuffer()
 {
-	glBufferSubData(GL_ARRAY_BUFFER, 0, this->vertices.size() * sizeof(Vertex), &this->vertices[0]);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, this->vertices.size() * sizeof(OldVertex), &this->vertices[0]);
 }
 
 void ThreeDShape::CreateBuffer(unsigned int* vboNum)
 {
 	glGenBuffers(1, vboNum);
 	glBindBuffer(GL_ARRAY_BUFFER, *vboNum);
-	glBufferData(GL_ARRAY_BUFFER, this->vertices.size() * sizeof(Vertex), &this->vertices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, this->vertices.size() * sizeof(OldVertex), &this->vertices[0], GL_STATIC_DRAW);
 }
 
 void ThreeDShape::CreateIndexBuffer(unsigned int* eboNum)
@@ -32,9 +32,9 @@ void ThreeDShape::CreateAllBuffers(unsigned int* vboNum, unsigned int* eboNum, u
 	this->CreateBuffer(vboNum);
 	this->CreateIndexBuffer(eboNum);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, colour));
-	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(OldVertex), (void*)offsetof(OldVertex, position));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(OldVertex), (void*)offsetof(OldVertex, colour));
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(OldVertex), (void*)offsetof(OldVertex, normal));
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
