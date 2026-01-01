@@ -19,16 +19,16 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
-vec3 camPos = vec3(0.0, 10.0, 0.0);
+vec3 camPos = vec3(0.0, 40.0, 0.0);
 float camDist = 0.1;
 float width = 2 * camDist * tan(radians(45));
 float height = 0.75 * width;
-vec3 lightPos = vec3(0.0, 15.0, 0.0);
-float lightRadius = 10.0;
-float lightAmbience = 0.6; 
-float lightDiffuse = 0.4; 
+vec3 lightPos = vec3(15.0, 25.0, -0.0);
+float lightRadius = 7.0;
+float lightAmbience = 0.2; 
+float lightDiffuse = 0.8; 
 float lightSpecular = 0.4;
-float alpha = 2.0;
+float alpha = 8.0;
 struct Material {
     float rAmbient;
     float rDiffuse;
@@ -111,8 +111,8 @@ bool reachesLightSource(Ray ray) {
 struct Intersection {
     vec3 hitPoint;
     Triangle hitTriangle;
-    bool isHit;
-    
+    float lambda;
+    bool isHit;  
 };
 
 
@@ -145,22 +145,24 @@ Intersection findClosestTriangle (Ray ray) {
 
     vec3 s1 = v2 - v1;
     vec3 s2 = v3 - v1;
-    //vec3 normal = cross(s1, s2);
+    // vec3 normal = cross(s1, s2);
     vec3 normal = vec3(0.0);
-    //normal = normalize(normal);
-    //if (dot(normal, -ray.direction) < 0) {
-     //  normal = -normal;
-    //}
+    // normal = normalize(normal);
+    
     // vec3 normal = vec3(0, 0, 0);
 
-    Material material = Material(0.1, 0.3, 0.7, 0.9);
+    Material material = Material(0.4, 0.2, 0.9, 0.5);
     Triangle triangle = Triangle(v1, v2, v3, normal, material);
     vec3 hitPointBary = rayIntersectedTriangle(ray, triangle);
     float u = hitPointBary.y;
     float v = hitPointBary.z;
     float w = 1 - u - v;
 
-    triangle.normal = normalize(w * n1 + u * n2 + v * n3);
+    normal = normalize(w * n1 + u * n2 + v * n3);
+    if (dot(normal, -ray.direction) < 0) {
+      normal = -normal;
+    }
+    triangle.normal = normal;
 
     vec3 hitPoint = ray.origin + hitPointBary.x * ray.direction;
     //float depth = hitPoint.y;
@@ -177,38 +179,65 @@ Intersection findClosestTriangle (Ray ray) {
     } 
   }
 
-  inter.hitPoint = maxHitPoint;
-  inter.hitTriangle = curMaxTriangle;
-  inter.isHit = hitAnything;
-
-  return inter;
+  return Intersection(maxHitPoint, curMaxTriangle, curMinT, hitAnything);
 }
+
+
+bool checkInShadow(Intersection inter) {
+    vec3 toLight = normalize(lightPos - inter.hitPoint);
+    vec3 hitPoint = inter.hitPoint + inter.hitTriangle.normal * 0.001;
+    Ray lightRay = Ray(hitPoint, toLight);
+
+    Intersection shadowInter = findClosestTriangle(lightRay);
+
+    if (!shadowInter.isHit) {
+        return false;
+    }
+
+    return length(lightPos - inter.hitPoint) > shadowInter.lambda;
+
+}
+
 
 float getReflectance(Ray ray, Intersection inter) {
     float reflectance = 0;
 
     vec3 normal = normalize(inter.hitTriangle.normal);
     vec3 toLight = normalize(lightPos - inter.hitPoint);
+    vec3 reflectDir = reflect(-toLight, normal);
     Ray reflectLight = getReflectedRay(inter.hitPoint, toLight, normal);
-    ray = getReflectedRay(inter.hitPoint, ray.direction, normal);
+    
 
     float ra = inter.hitTriangle.material.rAmbient;
     float rd = inter.hitTriangle.material.rDiffuse;
     float rs = inter.hitTriangle.material.rSpecular;
     float rg = inter.hitTriangle.material.rReflected;
 
-    reflectance = ra*lightAmbience + 
-                    rd*lightDiffuse*max(0, dot(normal, toLight)) + 
-                    rs*lightSpecular*pow(max(0, dot(reflectLight.direction, normalize(-ray.direction))), alpha);
+   if (checkInShadow(inter)) {
+        reflectance = ra * lightAmbience;
+   }
+   else {
+        reflectance = ra*lightAmbience + 
+                      rd*lightDiffuse*max(0, dot(normal, toLight)) + 
+                      rs*lightSpecular*pow(max(0, dot(reflectDir, normalize(-ray.direction))), alpha);
+    
+   }
+        
+    
 
     return reflectance;
     
 }
 
+
+
+
 float getPixColour(Ray ray, Intersection firstInter, int depth) {
 
     float reflectance = 0;
     float reflectanceWeight = 1.0;
+    float curReflectance = 0.0;
+    //float nextReflectance = 0.0;
     Intersection currentInter = firstInter;
     Ray currentRay = ray;
     for (unsigned int i = 0; i < depth; i ++) {
@@ -217,17 +246,20 @@ float getPixColour(Ray ray, Intersection firstInter, int depth) {
             break;
         }
 
-        float curReflectance = getReflectance(currentRay, currentInter);
+        
 
-        reflectance += curReflectance * reflectanceWeight;
+        curReflectance = getReflectance(currentRay, currentInter);    
+        reflectance = reflectance + curReflectance * reflectanceWeight;    
         reflectanceWeight *= currentInter.hitTriangle.material.rReflected;
 
-        if (reflectanceWeight < 0.08) {
-            break;
-        }
 
         Ray reflectedRay = getReflectedRay(currentInter.hitPoint, currentRay.direction, currentInter.hitTriangle.normal);
         currentInter = findClosestTriangle(reflectedRay);
+        
+        if (reflectanceWeight < 0.05) {
+            break;
+        }
+
         currentRay = reflectedRay;
     }
 
@@ -252,24 +284,12 @@ void main() {
   //Ray reflection = getReflectedRay(firstInter.hitPoint, ray.direction, firstInter.hitTriangle.normal);
 
   if (firstInter.isHit) {
-      float lightVal = getPixColour(ray, firstInter, 10);
-      //float colFactor = getColourFactor(firstInter.hitTriangle, reflection.direction);
-      //if (lightVal > 0.0) {
-        vec4 colour = vec4(lightVal*0.3, lightVal*0.5, lightVal*0.1, 1.0);//vec4(colFactor * 1.0, 0.0, 0.0, 1.0);
-        imageStore(img_output, pix, colour);
-      //}
-     /// else if (lightVal < 0) {
-      //  vec4 colour = vec4(1.0, 0.0, 0.0, 1.0);//vec4(colFactor * 1.0, 0.0, 0.0, 1.0);
-      //  imageStore(img_output, pix, colour);
-      //}
-      //else {
-       // vec4 colour = vec4(0.0, 1.0, 0.0, 1.0);//vec4(colFactor * 1.0, 0.0, 0.0, 1.0);
-        //imageStore(img_output, pix, colour);
-      //}
-      //imageStore(img_output, pix, colour);
+    float lightVal = getPixColour(ray, firstInter, 10);
+    vec4 colour = vec4(lightVal, 0.0, 0.0, 1.0);
+    imageStore(img_output, pix, colour);
   }
   else {
-    vec4 colour = vec4(0.0 ,0.0, 1.0, 1.0);//vec4(colFactor * 1.0, 0.0, 0.0, 1.0);
-      imageStore(img_output, pix, colour);
+    vec4 colour = vec4(0.0 ,0.0, 0.0, 1.0);
+    imageStore(img_output, pix, colour);
   }
 }
